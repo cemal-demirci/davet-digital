@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Tenant = require('../models/Tenant');
 
+// Easter egg: Reserved name for special someone :)
+const RESERVED_EASTER_EGG_NAME = 'pervin';
+
 // Create new tenant (sign up)
 router.post('/register', async (req, res) => {
   try {
@@ -17,6 +20,13 @@ router.post('/register', async (req, res) => {
     const existingSlug = await Tenant.findOne({ slug });
     if (existingSlug) {
       return res.status(400).json({ error: 'Bu site adresi zaten kullanılıyor. Lütfen başka bir adres seçin.' });
+    }
+
+    // Easter egg: Block "pervin" and anything starting with "pervin-"
+    if (slug === RESERVED_EASTER_EGG_NAME || slug.startsWith(RESERVED_EASTER_EGG_NAME + '-')) {
+      return res.status(400).json({
+        error: 'Bu isim özel bir kişi için rezerve edilmiştir. 💕'
+      });
     }
 
     // Create tenant
@@ -121,8 +131,23 @@ router.post('/:id/upgrade', async (req, res) => {
 // Check slug availability
 router.get('/check-slug/:slug', async (req, res) => {
   try {
-    const existing = await Tenant.findOne({ slug: req.params.slug });
-    res.json({ available: !existing });
+    const slug = req.params.slug;
+
+    // Check if slug already exists
+    const existing = await Tenant.findOne({ slug });
+    if (existing) {
+      return res.json({ available: false, reason: 'Bu site adresi zaten kullanılıyor.' });
+    }
+
+    // Easter egg: Block "pervin" and anything starting with "pervin-"
+    if (slug === RESERVED_EASTER_EGG_NAME || slug.startsWith(RESERVED_EASTER_EGG_NAME + '-')) {
+      return res.json({
+        available: false,
+        reason: 'Bu isim özel bir kişi için rezerve edilmiştir. 💕'
+      });
+    }
+
+    res.json({ available: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
