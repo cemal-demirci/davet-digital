@@ -16,6 +16,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: CLIENT_URL
-        value: https://client-f4a5nrgv2-cemal-demircis-projects.vercel.app
+        value: https://davet.digital
       - key: JWT_SECRET
         value: davet_digital_super_secret_key_2024_production_secure
