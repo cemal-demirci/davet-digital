@@ -38,8 +38,9 @@ const Signup = () => {
         .replace(/ö/g, 'o')
         .replace(/ş/g, 's')
         .replace(/ü/g, 'u')
-        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/[^a-z0-9.]+/g, '-')  // Allow dots (.)
         .replace(/^-+|-+$/g, '')
+        .replace(/\.{2,}/g, '.')  // Replace multiple dots with single dot
       setFormData(prev => ({ ...prev, slug: generatedSlug }))
       checkSlugAvailability(generatedSlug)
     }
@@ -246,7 +247,7 @@ const Signup = () => {
                       💡 Sizin için otomatik <span className="font-bold">alt alan adı</span> oluşturuyoruz!
                     </p>
                     <p className="text-xs text-purple-600 mt-1">
-                      Örnek: <span className="font-mono bg-white px-2 py-0.5 rounded">ayse-mehmet.davet.digital</span>
+                      Örnek: <span className="font-mono bg-white px-2 py-0.5 rounded">ayse-mehmet.davet.digital</span> veya <span className="font-mono bg-white px-2 py-0.5 rounded">pervin.cemal.davet.digital</span>
                     </p>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -257,7 +258,7 @@ const Signup = () => {
                       value={formData.slug}
                       onChange={handleChange}
                       className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent font-mono"
-                      placeholder="ayse-mehmet"
+                      placeholder="ayse-mehmet veya pervin.cemal"
                     />
                     <span className="text-gray-500 text-sm font-medium">.davet.digital</span>
                     {checkingSlug && <Loader className="w-5 h-5 text-gray-400 animate-spin" />}
