@@ -3,8 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { Heart, Sparkles, Check, AlertCircle, Loader } from 'lucide-react'
 import SEO from '../components/SEO'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const Signup = () => {
   const navigate = useNavigate()

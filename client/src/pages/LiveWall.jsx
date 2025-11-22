@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Heart, User } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const LiveWall = () => {
   const [photos, setPhotos] = useState([])

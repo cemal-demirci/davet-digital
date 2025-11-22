@@ -3,8 +3,8 @@ import { QRCodeSVG } from 'qrcode.react'
 import { Plus, Trash2, Download, QrCode as QrIcon, Printer, Share2 } from 'lucide-react'
 import axios from 'axios'
 import { themes } from '../themes/themes'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const QRManager = () => {
   const [qrCodes, setQrCodes] = useState([])

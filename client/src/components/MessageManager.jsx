@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { MessageSquare, CheckCircle, XCircle, Trash2 } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const MessageManager = () => {
   const [messages, setMessages] = useState([])

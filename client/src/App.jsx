@@ -14,9 +14,8 @@ import GuestGalleryView from './pages/GuestGalleryView'
 import LandingPage from './pages/LandingPage'
 import Pricing from './pages/Pricing'
 import Signup from './pages/Signup'
+import { API_URL } from './config'
 import './App.css'
-
-const API_URL = 'http://localhost:5001'
 
 function App() {
   const [coupleNames, setCoupleNames] = useState('')

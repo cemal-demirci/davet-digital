@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight, Play, Pause, Download, PackageOpen, Share2 } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const Gallery = () => {
   const [photos, setPhotos] = useState([])

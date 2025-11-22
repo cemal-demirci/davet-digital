@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Camera, Upload, Heart, CheckCircle, XCircle, Share2 } from 'lucide-react'
 import axios from 'axios'
 import CameraCapture from '../components/CameraCapture'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const GuestUpload = () => {
   const { qrCode } = useParams()

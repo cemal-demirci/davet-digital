@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Lock, X, ChevronLeft, ChevronRight, User, Calendar, CheckCircle, XCircle } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const GuestGalleryView = () => {
   const { code } = useParams()

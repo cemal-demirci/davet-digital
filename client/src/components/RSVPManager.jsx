@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Check, X, Trash2, Users, Mail, Phone, MessageSquare } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const RSVPManager = () => {
   const [rsvps, setRsvps] = useState([])

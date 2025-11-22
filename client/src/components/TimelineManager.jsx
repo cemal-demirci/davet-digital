@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Clock, Plus, Trash2, Calendar, MapPin, Heart, Camera, Music, Cake, Users } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const ICONS = {
   heart: Heart,

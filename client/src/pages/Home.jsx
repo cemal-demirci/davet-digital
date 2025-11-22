@@ -3,8 +3,7 @@ import { Heart, MapPin, Calendar, Clock, Music, Palette, X } from 'lucide-react'
 import axios from 'axios'
 import { getThemeClasses, getGradientClass, getHeroGradient, themeColorMap } from '../utils/themeHelper'
 import SEO from '../components/SEO'
-
-const API_URL = 'http://localhost:5001'
+import { API_URL } from '../config'
 
 const Home = () => {
   const [settings, setSettings] = useState(null)

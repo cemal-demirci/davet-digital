@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Check, X, Users, Mail, Phone, AlertCircle, Heart } from 'lucide-react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
-const API_URL = 'http://localhost:5001'
 
 const RSVP = () => {
   const [settings, setSettings] = useState(null)
