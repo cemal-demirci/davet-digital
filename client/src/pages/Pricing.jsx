@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Check, Heart, Crown, Sparkles, Zap } from 'lucide-react'
 import SEO from '../components/SEO'
+import MarketingNavbar from '../components/MarketingNavbar'
 
 const Pricing = () => {
   const plans = [
@@ -73,6 +74,22 @@ const Pricing = () => {
     }
   ]
 
+  const comparisonFeatures = [
+    { name: 'Premium Temalar', temel: '3', premium: '10', platinum: 'Tümü' },
+    { name: 'Misafir Sayısı', temel: '50', premium: '200', platinum: 'Sınırsız' },
+    { name: 'Fotoğraf Depolama', temel: '100 adet', premium: 'Sınırsız', platinum: 'Sınırsız' },
+    { name: 'QR Kod Sistemi', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'Canlı Fotoğraf Duvarı', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'Geri Sayım Sayacı', temel: '✅', premium: '✅', platinum: '✅' },
+    { name: 'RSVP Yönetimi', temel: 'Temel', premium: 'Gelişmiş', platinum: 'Gelişmiş' },
+    { name: 'Şifre Koruması', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'Analytics Dashboard', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'Özel Domain', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'Çoklu Dil', temel: '❌', premium: '❌', platinum: '✅' },
+    { name: 'Destek', temel: 'Email', premium: 'Öncelikli', platinum: '7/24' },
+    { name: 'Erişim Süresi', temel: '30 Gün', premium: '90 Gün', platinum: 'Ömür Boyu' }
+  ]
+
   const faqs = [
     {
       question: 'Aylık ödeme yapmam gerekiyor mu?',
@@ -97,13 +114,16 @@ const Pricing = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white pt-20 pb-24">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white">
       <SEO
         title="Fiyatlandırma - Davet Digital | Şeffaf ve Basit Paketler"
         description="Davet Digital düğün sitesi paketleri: Temel (₺999), Premium (₺2.499), Platinum (₺4.999). Tek seferlik ödeme, gizli ücret yok. 14 günlük para iade garantisi."
         keywords="düğün sitesi fiyat, düğün davetiyesi paketleri, online davetiye fiyat, düğün sitesi ücret"
         url="https://davet.digital/pricing"
       />
+      <MarketingNavbar />
+
+      <div className="pt-20 pb-24">
       {/* Hero */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20">
         <div className="flex justify-center mb-6">
@@ -174,6 +194,37 @@ const Pricing = () => {
         </div>
       </div>
 
+      {/* Feature Comparison Table */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <h2 className="text-4xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 text-center mb-12">
+          Paket Karşılaştırması
+        </h2>
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                  <th className="px-6 py-4 text-left font-semibold">Özellikler</th>
+                  <th className="px-6 py-4 text-center font-semibold">Temel</th>
+                  <th className="px-6 py-4 text-center font-semibold">Premium</th>
+                  <th className="px-6 py-4 text-center font-semibold">Platinum</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonFeatures.map((feature, index) => (
+                  <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                    <td className="px-6 py-4 font-medium text-gray-900">{feature.name}</td>
+                    <td className="px-6 py-4 text-center text-gray-700">{feature.temel}</td>
+                    <td className="px-6 py-4 text-center text-gray-700 font-semibold">{feature.premium}</td>
+                    <td className="px-6 py-4 text-center text-gray-700">{feature.platinum}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       {/* Money Back Guarantee */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl p-12 border border-green-200 text-center">
@@ -220,6 +271,7 @@ const Pricing = () => {
             Bize Ulaşın
           </a>
         </div>
+      </div>
       </div>
     </div>
   )

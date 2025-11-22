@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield } from 'lucide-react'
 import SEO from '../components/SEO'
+import MarketingNavbar from '../components/MarketingNavbar'
 
 const LandingPage = () => {
   const features = [
@@ -21,6 +22,12 @@ const LandingPage = () => {
       title: 'Canlı Fotoğraf Duvarı',
       description: 'Düğün salonunuzdaki TV ekranlar için gerçek zamanlı fotoğraf gösterisi',
       color: 'from-orange-500 to-red-500'
+    },
+    {
+      icon: <Calendar className="w-8 h-8" />,
+      title: 'Geri Sayım Sayacı',
+      description: 'Büyük güne kalan gün, saat, dakika ve saniye ile heyecanı yaşatın',
+      color: 'from-rose-500 to-pink-500'
     },
     {
       icon: <Calendar className="w-8 h-8" />,
@@ -78,6 +85,8 @@ const LandingPage = () => {
         keywords="düğün sitesi, düğün davetiyesi, online davetiye, QR kod düğün, düğün fotoğraf paylaşımı, RSVP, düğün organizasyon, davet.digital"
         url="https://davet.digital/"
       />
+      <MarketingNavbar />
+
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 pt-20 pb-32">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNlYzQ4OTkiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItMnptMCAwdi0yIDJ6bS0yIDB2LTIgMnptLTIgMGgtMiAyem0wIDBoMi0yem0wLTJoLTIgMnptMiAwaDItMnptMC0yaDItMnptMCAyaC0yIDJ6bTAgMGgyLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
@@ -169,6 +178,124 @@ const LandingPage = () => {
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works */}
+      <div className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-4">
+              Nasıl Çalışır?
+            </h2>
+            <p className="text-xl text-gray-600">
+              3 basit adımda düğün siteniz hazır
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
+                1
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Kayıt Olun</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Birkaç basit form ile düğün bilgilerinizi girin ve özel alt alan adınızı alın. Kredi kartı gerektirmez.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
+                2
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Özelleştirin</h3>
+              <p className="text-gray-600 leading-relaxed">
+                10 premium temadan birini seçin, fotoğraflarınızı yükleyin ve etkinlik detaylarınızı ekleyin.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-6">
+                3
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Paylaşın</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Benzersiz linkinizi misafirlerinizle paylaşın ve canlı fotoğraf akışını gerçek zamanlı izleyin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <div className="py-24 bg-gradient-to-b from-white to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-4">
+              Neden Davet Digital?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Modern çiftler için tasarlandı
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Kod Yazmaya Gerek Yok</h3>
+                  <p className="text-gray-600">
+                    Teknik bilgi gerektirmeyen sürükle-bırak arayüzü ile dakikalar içinde sitenizi oluşturun.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Anında Kurulum</h3>
+                  <p className="text-gray-600">
+                    5 dakikada canlı. Tema seçin, bilgilerinizi girin ve hemen başlayın. Hiçbir bekleme yok.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Heart className="w-6 h-6 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Mobil Öncelikli</h3>
+                  <p className="text-gray-600">
+                    Tüm misafirleriniz telefonlarından mükemmel bir deneyim yaşar. Responsive tasarım.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-6 h-6 text-pink-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Güvenli & Özel</h3>
+                  <p className="text-gray-600">
+                    Şifre koruması, onay sistemi ve güvenli fotoğraf yükleme ile anılarınız güvende.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

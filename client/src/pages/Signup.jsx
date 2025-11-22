@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { Heart, Sparkles, Check, AlertCircle, Loader } from 'lucide-react'
 import SEO from '../components/SEO'
+import MarketingNavbar from '../components/MarketingNavbar'
 import { API_URL } from '../config'
 
 
@@ -113,13 +114,16 @@ const Signup = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white pt-20 pb-24">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white">
       <SEO
         title="Kayıt Ol - Davet Digital | 14 Günlük Ücretsiz Deneme"
         description="Davet Digital'e kaydolun ve dakikalar içinde mükemmel düğün sitenizi oluşturun. Özel alt alan adı, 10 premium tema, QR kod sistemi. Kredi kartı gerektirmez."
         keywords="düğün sitesi kayıt, düğün davetiyesi oluştur, online davetiye kayıt, ücretsiz deneme"
         url="https://davet.digital/signup"
       />
+      <MarketingNavbar />
+
+      <div className="pt-20 pb-24">
       {/* Hero */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <div className="flex justify-center mb-6">
@@ -368,6 +372,7 @@ const Signup = () => {
             <p className="text-sm text-gray-600">5 dakikada hazır</p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
