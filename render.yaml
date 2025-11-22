@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: davet-digital-backend
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
+    healthCheckPath: /
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://cemaldemirci34:1q2w3e4rCD@clustercemal.e0bof7r.mongodb.net/davet-digital?retryWrites=true&w=majority&appName=ClusterCemal
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        value: https://client-f4a5nrgv2-cemal-demircis-projects.vercel.app
+      - key: JWT_SECRET
+        value: davet_digital_super_secret_key_2024_production_secure
