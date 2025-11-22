@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "gallery": "Galeri",
+    "rsvp": "Katılım",
+    "timeline": "Program",
+    "liveWall": "Canlı Duvar",
+    "admin": "Yönetim"
+  },
+  "home": {
+    "title": "Düğünümüze Davetlisiniz",
+    "ourStory": "Hikayemiz",
+    "countdown": "Geri Sayım",
+    "days": "Gün",
+    "hours": "Saat",
+    "minutes": "Dakika",
+    "seconds": "Saniye",
+    "weddingProgram": "Düğün Programı",
+    "ourMemories": "Anılarımız",
+    "withLove": "Sevgiyle"
+  },
+  "auth": {
+    "specialInvitation": "Özel Davet",
+    "enterPassword": "Lütfen şifrenizi giriniz",
+    "password": "Şifre",
+    "login": "Giriş Yap",
+    "wrongPassword": "Yanlış şifre!"
+  },
+  "gallery": {
+    "title": "Fotoğraf Galerisi",
+    "uploadPhoto": "Fotoğraf Yükle",
+    "noPhotos": "Henüz fotoğraf yok",
+    "approved": "Onaylı",
+    "pending": "Beklemede"
+  },
+  "guestGallery": {
+    "title": "Misafir Galerisi",
+    "enterCode": "Tüm misafir fotoğraflarını görmek için erişim kodunu girin",
+    "accessCode": "Erişim Kodu",
+    "invalidCode": "Geçersiz kod!",
+    "codeNotSet": "Galeri erişim kodu ayarlanmamış",
+    "error": "Bir hata oluştu",
+    "photosUploaded": "fotoğraf yüklendi"
+  },
+  "rsvp": {
+    "title": "Katılım Bildirimi",
+    "pleaseConfirm": "Lütfen katılımınızı onaylayın",
+    "fullName": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "attending": "Katılacağım",
+    "notAttending": "Katılamayacağım",
+    "numberOfGuests": "Misafir Sayısı",
+    "dietaryRestrictions": "Diyet Kısıtlamaları",
+    "specialRequests": "Özel İstekler",
+    "submit": "Gönder",
+    "thankYou": "Yanıtınız için teşekkürler!",
+    "required": "Bu alan zorunludur"
+  },
+  "liveWall": {
+    "disabled": "Canlı Duvar şu anda kapalı",
+    "loading": "Fotoğraflar yükleniyor...",
+    "welcomeToWedding": "Düğünümüze Hoşgeldiniz"
+  },
+  "admin": {
+    "dashboard": "Yönetim Paneli",
+    "basicSettings": "Temel Ayarlar",
+    "coupleNames": "Çift İsimleri",
+    "weddingDate": "Düğün Tarihi",
+    "location": "Konum",
+    "themeSelection": "Premium Tema Seçimi",
+    "features": "Özellikler",
+    "guestPhotoUpload": "Misafir Fotoğraf Yükleme",
+    "passwordProtection": "Şifre Koruması",
+    "sitePassword": "Site Şifresi",
+    "storySection": "Hikaye Bölümü",
+    "storyTitle": "Hikaye Başlığı",
+    "storyText": "Hikaye Metni",
+    "backgroundMusic": "Arka Plan Müziği",
+    "musicUrl": "Müzik URL",
+    "liveWallSettings": "Canlı Duvar (TV Gösterim)",
+    "liveWallEnabled": "Canlı Duvar Aktif",
+    "showAdminPhotos": "Admin Fotoğraflarını Göster",
+    "showGuestPhotos": "Misafir Fotoğraflarını Göster",
+    "guestGalleryCode": "Misafir Galerisi Erişim Kodu",
+    "activeTheme": "Aktif Tema",
+    "saveSettings": "Ayarları Kaydet",
+    "settingsSaved": "Ayarlar başarıyla kaydedildi!"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "close": "Kapat",
+    "next": "İleri",
+    "previous": "Geri",
+    "download": "İndir",
+    "share": "Paylaş",
+    "yes": "Evet",
+    "no": "Hayır"
+  }
+}

@@ -1,0 +1,263 @@
+import { Link } from 'react-router-dom'
+import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield } from 'lucide-react'
+import SEO from '../components/SEO'
+
+const LandingPage = () => {
+  const features = [
+    {
+      icon: <Palette className="w-8 h-8" />,
+      title: '10 Premium Tema',
+      description: 'Romantik pembe\'den şık siyaha kadar özelleştirilebilir güzel temalar',
+      color: 'from-pink-500 to-purple-500'
+    },
+    {
+      icon: <QrCode className="w-8 h-8" />,
+      title: 'QR Kod ile Fotoğraf Yükleme',
+      description: 'Misafirleriniz her masa için benzersiz QR kodlarla anında fotoğraf yükleyebilir',
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      icon: <Camera className="w-8 h-8" />,
+      title: 'Canlı Fotoğraf Duvarı',
+      description: 'Düğün salonunuzdaki TV ekranlar için gerçek zamanlı fotoğraf gösterisi',
+      color: 'from-orange-500 to-red-500'
+    },
+    {
+      icon: <Calendar className="w-8 h-8" />,
+      title: 'RSVP Yönetimi',
+      description: 'Misafir katılımını, diyet kısıtlamalarını ve özel istekleri takip edin',
+      color: 'from-green-500 to-emerald-500'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: 'Misafir Galerisi',
+      description: 'Onay sistemi ile şifre korumalı galeriler',
+      color: 'from-purple-500 to-pink-500'
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: 'Çoklu Dil Desteği',
+      description: 'Türkçe, İngilizce ve daha fazla dil desteği',
+      color: 'from-indigo-500 to-blue-500'
+    }
+  ]
+
+  const stats = [
+    { number: '500+', label: 'Mutlu Çift' },
+    { number: '50K+', label: 'Paylaşılan Fotoğraf' },
+    { number: '10K+', label: 'Katılımcı Misafir' },
+    { number: '4.9/5', label: 'Ortalama Puan' }
+  ]
+
+  const testimonials = [
+    {
+      name: 'Ayşe & Mehmet',
+      text: 'QR kod özelliği harikaydı! Misafirlerimiz anında fotoğraf yükleyebildiler, çok beğendiler.',
+      rating: 5,
+      image: '👰'
+    },
+    {
+      name: 'Elif & Can',
+      text: 'Çok profesyonel ve kullanımı kolay. Düğünümüz için mükemmel bir çözüm oldu!',
+      rating: 5,
+      image: '🤵'
+    },
+    {
+      name: 'Zeynep & Burak',
+      text: 'Canlı fotoğraf duvarı muhteşemdi! Düğündeki herkes hayran kaldı.',
+      rating: 5,
+      image: '💑'
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-white">
+      <SEO
+        title="Davet Digital - Mükemmel Düğün Sitenizi Dakikalar İçinde Oluşturun"
+        description="QR kodlu fotoğraf paylaşımı, canlı ekran gösterileri, RSVP yönetimi ve 10 premium tema ile muhteşem düğün sitenizi oluşturun. Kod yazmaya gerek yok. 14 günlük ücretsiz deneme."
+        keywords="düğün sitesi, düğün davetiyesi, online davetiye, QR kod düğün, düğün fotoğraf paylaşımı, RSVP, düğün organizasyon, davet.digital"
+        url="https://davet.digital/"
+      />
+      {/* Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 pt-20 pb-32">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNlYzQ4OTkiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItMnptMCAwdi0yIDJ6bS0yIDB2LTIgMnptLTIgMGgtMiAyem0wIDBoMi0yem0wLTJoLTIgMnptMiAwaDItMnptMC0yaDItMnptMCAyaC0yIDJ6bTAgMGgyLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <Heart className="w-24 h-24 text-pink-500 animate-pulse" />
+                <Sparkles className="w-10 h-10 text-purple-500 absolute -top-2 -right-2 animate-bounce" />
+              </div>
+            </div>
+
+            <h1 className="text-6xl md:text-8xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 mb-6">
+              Davet Digital
+            </h1>
+
+            <p className="text-2xl md:text-3xl text-gray-700 mb-4 font-serif">
+              Dakikalar İçinde Mükemmel Düğün Siteniz
+            </p>
+
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              QR kodlu fotoğraf paylaşımı, canlı ekran gösterileri, RSVP yönetimi ve premium
+              temalarla muhteşem, interaktif bir düğün sitesi oluşturun. Kod yazmaya gerek yok.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to="/signup"
+                className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all flex items-center space-x-2"
+              >
+                <span>Ücretsiz Deneyin</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+
+              <Link
+                to="/demo"
+                className="px-8 py-4 bg-white text-purple-600 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all border-2 border-purple-200"
+              >
+                Canlı Demo'yu İncele
+              </Link>
+            </div>
+
+            <p className="mt-6 text-sm text-gray-500">
+              ✨ Kredi kartı gerektirmez • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="bg-white py-16 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="py-24 bg-gradient-to-b from-white to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-4">
+              İhtiyacınız Olan Her Şey
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Modern düğünler için özel olarak tasarlanmış profesyonel özellikler
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 border border-gray-100"
+              >
+                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center text-white mb-6`}>
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-4">
+              Çiftlerin Tercihi
+            </h2>
+            <p className="text-xl text-gray-600">
+              Binlerce çiftin güvendiği platform
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100"
+              >
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                <div className="flex items-center">
+                  <span className="text-4xl mr-3">{testimonial.image}</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                    <p className="text-sm text-gray-600">Onaylı Müşteri</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-24 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzR2Mi0yem0wIDB2LTIgMnptLTIgMHYtMiAyem0tMiAwaC0yIDJ6bTAgMGgyLTJ6bTAtMmgtMiAyem0yIDBoMi0yem0wLTJoMi0yem0wIDJoLTIgMnptMCAwaDItMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-5xl md:text-6xl font-script mb-6">
+            Hemen Başlayın
+          </h2>
+          <p className="text-2xl mb-8 text-white/90">
+            Davet Digital'i seçen binlerce çifte katılın
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              to="/signup"
+              className="px-10 py-5 bg-white text-purple-600 rounded-full text-xl font-bold hover:shadow-2xl transform hover:scale-105 transition-all"
+            >
+              Ücretsiz Başla
+            </Link>
+          </div>
+
+          <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm">
+            <div className="flex items-center space-x-2">
+              <Shield className="w-5 h-5" />
+              <span>Güvenli & Özel</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Zap className="w-5 h-5" />
+              <span>Anında Kurulum</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Check className="w-5 h-5" />
+              <span>Kod Yazmaya Gerek Yok</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Heart className="w-12 h-12 mx-auto mb-4 text-pink-500" />
+          <p className="text-xl font-script mb-2">Davet Digital</p>
+          <p className="text-gray-400">2024'ten beri unutulmaz düğün anıları yaratıyoruz</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default LandingPage

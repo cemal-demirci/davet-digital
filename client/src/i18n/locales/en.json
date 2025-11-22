@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "rsvp": "RSVP",
+    "timeline": "Timeline",
+    "liveWall": "Live Wall",
+    "admin": "Admin"
+  },
+  "home": {
+    "title": "You're Invited to Our Wedding",
+    "ourStory": "Our Story",
+    "countdown": "Countdown",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "weddingProgram": "Wedding Program",
+    "ourMemories": "Our Memories",
+    "withLove": "With Love"
+  },
+  "auth": {
+    "specialInvitation": "Special Invitation",
+    "enterPassword": "Please enter your password",
+    "password": "Password",
+    "login": "Login",
+    "wrongPassword": "Wrong password!"
+  },
+  "gallery": {
+    "title": "Photo Gallery",
+    "uploadPhoto": "Upload Photo",
+    "noPhotos": "No photos yet",
+    "approved": "Approved",
+    "pending": "Pending"
+  },
+  "guestGallery": {
+    "title": "Guest Gallery",
+    "enterCode": "Enter access code to view all guest photos",
+    "accessCode": "Access Code",
+    "invalidCode": "Invalid code!",
+    "codeNotSet": "Gallery access code not set",
+    "error": "An error occurred",
+    "photosUploaded": "photos uploaded"
+  },
+  "rsvp": {
+    "title": "RSVP",
+    "pleaseConfirm": "Please confirm your attendance",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "attending": "Will Attend",
+    "notAttending": "Cannot Attend",
+    "numberOfGuests": "Number of Guests",
+    "dietaryRestrictions": "Dietary Restrictions",
+    "specialRequests": "Special Requests",
+    "submit": "Submit RSVP",
+    "thankYou": "Thank you for your response!",
+    "required": "This field is required"
+  },
+  "liveWall": {
+    "disabled": "Live Wall is currently disabled",
+    "loading": "Loading photos...",
+    "welcomeToWedding": "Welcome to Our Wedding"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "basicSettings": "Basic Settings",
+    "coupleNames": "Couple Names",
+    "weddingDate": "Wedding Date",
+    "location": "Location",
+    "themeSelection": "Premium Theme Selection",
+    "features": "Features",
+    "guestPhotoUpload": "Guest Photo Upload",
+    "passwordProtection": "Password Protection",
+    "sitePassword": "Site Password",
+    "storySection": "Story Section",
+    "storyTitle": "Story Title",
+    "storyText": "Story Text",
+    "backgroundMusic": "Background Music",
+    "musicUrl": "Music URL",
+    "liveWallSettings": "Live Wall (TV Display)",
+    "liveWallEnabled": "Live Wall Active",
+    "showAdminPhotos": "Show Admin Photos",
+    "showGuestPhotos": "Show Guest Photos",
+    "guestGalleryCode": "Guest Gallery Access Code",
+    "activeTheme": "Active Theme",
+    "saveSettings": "Save Settings",
+    "settingsSaved": "Settings saved successfully!"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "download": "Download",
+    "share": "Share",
+    "yes": "Yes",
+    "no": "No"
+  }
+}
