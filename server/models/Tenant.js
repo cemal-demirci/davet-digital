@@ -6,6 +6,17 @@ const tenantSchema = new mongoose.Schema({
   ownerEmail: { type: String, required: true, unique: true },
   ownerPhone: String,
 
+  // Authentication
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }, // Hashed password
+  role: {
+    type: String,
+    enum: ['user', 'corporate_admin', 'super_admin'],
+    default: 'user'
+  },
+  resetPasswordToken: String,
+  resetPasswordExpiry: Date,
+
   // Subscription information
   plan: {
     type: String,
@@ -20,10 +31,54 @@ const tenantSchema = new mongoose.Schema({
   subscriptionStartDate: { type: Date, default: Date.now },
   subscriptionEndDate: Date,
 
+  // Event Type
+  eventType: {
+    type: String,
+    enum: ['wedding', 'engagement', 'corporate', 'circumcision', 'birthday', 'graduation', 'baby-shower'],
+    default: 'wedding',
+    required: true
+  },
+
   // Wedding information
   coupleNames: String,
   weddingDate: Date,
-  slug: { type: String, unique: true, required: true }, // URL slug (e.g., ayse-mehmet-2024)
+
+  // Corporate Event information
+  companyName: String,
+  eventName: String, // e.g., "Annual Gala 2024", "Product Launch"
+  eventDate: Date,
+  eventType_detail: String, // e.g., "Conference", "Gala", "Product Launch", "Team Building"
+  organizerName: String,
+  organizerTitle: String,
+  companyLogo: String, // URL to logo
+
+  // Circumcision Event information
+  childName: String,
+  circumcisionDate: Date,
+  parentNames: String,
+
+  // Engagement Event information
+  partnerNames: String, // For engagement
+  engagementDate: Date,
+
+  // Birthday Event information
+  celebrantName: String,
+  birthDate: Date,
+  age: Number,
+
+  // Graduation Event information
+  graduateName: String,
+  graduationDate: Date,
+  school: String,
+  degree: String,
+
+  // Baby Shower information
+  parentNames_baby: String,
+  expectedDate: Date,
+  babyGender: String, // 'boy', 'girl', 'surprise'
+
+  // Common fields
+  slug: { type: String, unique: true, required: true }, // URL slug (e.g., ayse-mehmet-2024 or abc-corp-gala-2024)
   customDomain: String, // For premium/platinum plans
 
   // Plan limits
@@ -136,5 +191,6 @@ tenantSchema.pre('save', async function() {
 tenantSchema.index({ slug: 1 });
 tenantSchema.index({ customDomain: 1 });
 tenantSchema.index({ ownerEmail: 1 });
+tenantSchema.index({ username: 1 });
 
 module.exports = mongoose.model('Tenant', tenantSchema);

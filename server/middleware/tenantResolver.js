@@ -59,42 +59,51 @@ const tenantResolver = async (req, res, next) => {
     }
 
     // For development on localhost: create/use demo tenant if none found
-    if (!tenant && req.get('host')?.includes('localhost')) {
-      try {
-        let demoTenant = await Tenant.findOne({ slug: 'demo' });
-        if (!demoTenant) {
-          // Create default demo tenant with all features
-          demoTenant = await Tenant.create({
-            slug: 'demo',
-            ownerEmail: 'demo@davet.digital',
-            package: 'platinum',
-            subscriptionStatus: 'active',
-            features: {
-              customDomain: true,
-              rsvpManagement: true,
-              photoGallery: true,
-              livePhotoWall: true,
-              guestMessages: true,
-              eventTimeline: true,
-              giftRegistry: true,
-              qrCodeUpload: true,
-              emailNotifications: true,
-              analytics: true,
-              customThemes: true
-            },
-            limits: {
-              maxGuests: -1,
-              maxPhotos: -1,
-              maxStorage: -1
-            }
-          });
-        }
-        req.tenant = demoTenant;
-        req.tenantId = demoTenant._id;
-      } catch (error) {
-        console.error('Error creating/finding demo tenant:', error);
-      }
-    }
+    // TEMPORARILY DISABLED: Causing issues with Vercel deployment
+    // if (!tenant && req.get('host')?.includes('localhost')) {
+    //   try {
+    //     let demoTenant = await Tenant.findOne({ slug: 'demo' });
+    //     if (!demoTenant) {
+    //       // Create default demo tenant with all features
+    //       demoTenant = await Tenant.create({
+    //         slug: 'demo',
+    //         ownerName: 'Demo User',
+    //         ownerEmail: 'demo@davet.digital',
+    //         ownerPhone: '+90 555 000 0000',
+    //         username: 'demo',
+    //         password: 'hashed_demo_password_not_used',
+    //         eventType: 'wedding',
+    //         coupleNames: 'Ayşe & Mehmet',
+    //         weddingDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days from now
+    //         package: 'platinum',
+    //         plan: 'platinum',
+    //         subscriptionStatus: 'active',
+    //         features: {
+    //           customDomain: true,
+    //           rsvpManagement: true,
+    //           photoGallery: true,
+    //           livePhotoWall: true,
+    //           guestMessages: true,
+    //           eventTimeline: true,
+    //           giftRegistry: true,
+    //           qrCodeUpload: true,
+    //           emailNotifications: true,
+    //           analytics: true,
+    //           customThemes: true
+    //         },
+    //         limits: {
+    //           maxGuests: -1,
+    //           maxPhotos: -1,
+    //           maxStorage: -1
+    //         }
+    //       });
+    //     }
+    //     req.tenant = demoTenant;
+    //     req.tenantId = demoTenant._id;
+    //   } catch (error) {
+    //     console.error('Error creating/finding demo tenant:', error);
+    //   }
+    // }
 
     next();
   } catch (error) {

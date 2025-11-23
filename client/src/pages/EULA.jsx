@@ -93,7 +93,7 @@ const EULA = () => {
                 <p><strong>3.2.</strong> Paket seçiminiz, belirlenen süre boyunca (365 gün) geçerlidir.</p>
                 <p><strong>3.3.</strong> İlk 30 gün deneme süresi olarak kabul edilir ve tüm özellikler aktiftir.</p>
                 <p><strong>3.4.</strong> 30 gün sonunda, seçtiğiniz pakete özel özellikler devam eder.</p>
-                <p><strong>3.5.</strong> 14 gün içinde hizmetten memnun kalmazsanız, para iade garantisi kapsamında tam iade alabilirsiniz.</p>
+                <p><strong>3.5.</strong> 30 gün içinde hizmetten memnun kalmazsanız, para iade garantisi kapsamında tam iade alabilirsiniz.</p>
                 <p><strong>3.6.</strong> Paket yükseltmeleri her zaman yapılabilir. Sadece fark ücreti ödenir.</p>
               </div>
             </section>
@@ -156,10 +156,10 @@ const EULA = () => {
                 8. İptal ve İade Politikası
               </h2>
               <div className="space-y-3 text-gray-700">
-                <p><strong>8.1.</strong> 14 günlük para iade garantisi: Satın alma tarihinden itibaren 14 gün içinde tam iade alabilirsiniz.</p>
+                <p><strong>8.1.</strong> 30 günlük para iade garantisi: Satın alma tarihinden itibaren 30 gün içinde tam iade alabilirsiniz.</p>
                 <p><strong>8.2.</strong> İade talebi için destek ekibine email göndermeniz yeterlidir.</p>
                 <p><strong>8.3.</strong> İade işlemi 5-7 iş günü içinde tamamlanır.</p>
-                <p><strong>8.4.</strong> 14 gün sonrası iadeler, yalnızca Davet Digital'in hizmet sağlayamaması durumunda kabul edilir.</p>
+                <p><strong>8.4.</strong> 30 gün sonrası iadeler, yalnızca Davet Digital'in hizmet sağlayamaması durumunda kabul edilir.</p>
               </div>
             </section>
 

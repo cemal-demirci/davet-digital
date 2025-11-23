@@ -57,8 +57,9 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        script: ['Great Vibes', 'cursive'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
       },
     },
   },

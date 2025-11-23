@@ -16,10 +16,31 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedding-website')
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log('MongoDB connection error:', err));
+// Database connection middleware - REMOVED to prevent timeout issues
+// Each route that needs DB will connect individually
+
+// MongoDB Connection with caching for serverless
+let cachedDb = null;
+
+async function connectDB() {
+  if (cachedDb && mongoose.connection.readyState === 1) {
+    return cachedDb;
+  }
+
+  try {
+    const connection = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedding-website', {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+
+    cachedDb = connection;
+    console.log('MongoDB connected');
+    return connection;
+  } catch (err) {
+    console.log('MongoDB connection error:', err);
+    throw err;
+  }
+}
 
 // Import models
 const Tenant = require('./models/Tenant');
@@ -38,6 +59,9 @@ const { tenantResolver, requireTenant, requireFeature, checkLimit } = require('.
 
 // Import routes
 const tenantRoutes = require('./routes/tenants');
+const authRoutes = require('./routes/auth');
+const invitationRoutes = require('./routes/invitations');
+const superAdminRoutes = require('./routes/superAdmin');
 
 // File upload configuration
 const storage = multer.diskStorage({
@@ -61,6 +85,11 @@ app.use('/api', tenantResolver);
 
 // Public routes (no tenant required)
 app.use('/api/tenants', tenantRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/super-admin', superAdminRoutes);
+
+// Invitation routes (tenant aware)
+app.use('/api/invitations', invitationRoutes);
 
 // Settings Routes (require tenant)
 app.get('/api/settings', requireTenant, async (req, res) => {
@@ -705,7 +734,14 @@ app.post('/api/google-drive/disconnect', requireTenant, async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export for Vercel serverless
+module.exports = app;
+
+// For local development
+if (require.main === module) {
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, async () => {
+    await connectDB();
+    console.log(`Server running on port ${PORT}`);
+  });
+}

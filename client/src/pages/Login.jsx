@@ -1,36 +1,70 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { LogIn, Mail, Lock, AlertCircle, Loader, Heart } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useNavigate, Link, useSearchParams } from 'react-router-dom'
+import { LogIn, User, Lock, AlertCircle, Loader, Sparkles, CheckCircle } from 'lucide-react'
+import axios from 'axios'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
 import FloatingDecor from '../components/FloatingDecor'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
 const Login = () => {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
 
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   })
+
+  useEffect(() => {
+    // Check if redirected from signup with success
+    if (searchParams.get('registered') === 'true') {
+      const username = searchParams.get('username')
+      if (username) {
+        setFormData(prev => ({ ...prev, username }))
+        setSuccess('Kayıt başarılı! Şimdi giriş yapabilirsiniz.')
+      }
+    }
+    // Check if redirected from password reset with success
+    if (searchParams.get('reset') === 'success') {
+      setSuccess('Şifreniz başarıyla güncellendi! Şimdi giriş yapabilirsiniz.')
+    }
+  }, [searchParams])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    setError('') // Clear error on input change
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    setSuccess('')
     setLoading(true)
 
-    // Simulate login - gerçek implementasyon backend'de olacak
-    setTimeout(() => {
-      // Şimdilik admin sayfasına yönlendir
+    try {
+      const response = await axios.post(`${API_URL}/api/auth/login`, formData)
+
+      // Store auth token and tenant info
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('tenantId', response.data.user.id)
+      localStorage.setItem('tenantSlug', response.data.user.slug)
+      localStorage.setItem('username', response.data.user.username)
+      localStorage.setItem('eventType', response.data.user.eventType)
+
+      // Redirect to admin panel
       navigate('/admin')
-    }, 1000)
+    } catch (error) {
+      setError(error.response?.data?.error || 'Kullanıcı adı veya şifre hatalı.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -49,21 +83,28 @@ const Login = () => {
         <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <Heart className="w-16 h-16 text-pink-500 animate-pulse" />
+              <Sparkles className="w-16 h-16 text-indigo-500 animate-pulse" />
               <LogIn className="w-8 h-8 text-purple-500 absolute -bottom-1 -right-1" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mb-4">
             Hoş Geldiniz
           </h1>
           <p className="text-lg text-gray-600">
-            Düğün sitenize giriş yapın ve yönetmeye devam edin
+            Etkinlik sitenize giriş yapın ve yönetmeye devam edin
           </p>
         </div>
 
         {/* Login Form */}
         <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
+            {success && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start space-x-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                <p className="text-green-700">{success}</p>
+              </div>
+            )}
+
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
@@ -72,20 +113,20 @@ const Login = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Email */}
+              {/* Username */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Adresiniz
+                  Kullanıcı Adınız
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
-                    type="email"
-                    name="email"
+                    type="text"
+                    name="username"
                     required
-                    value={formData.email}
+                    value={formData.username}
                     onChange={handleChange}
-                    placeholder="ornek@email.com"
+                    placeholder="kullaniciadi"
                     className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   />
                 </div>
@@ -119,9 +160,9 @@ const Login = () => {
                   />
                   <span className="ml-2 text-sm text-gray-700">Beni Hatırla</span>
                 </label>
-                <a href="#" className="text-sm text-purple-600 hover:underline">
+                <Link to="/forgot-password" className="text-sm text-purple-600 hover:underline">
                   Şifremi Unuttum
-                </a>
+                </Link>
               </div>
 
               {/* Submit Button */}
@@ -148,7 +189,7 @@ const Login = () => {
             <div className="mt-8 text-center">
               <p className="text-gray-600">
                 Hesabınız yok mu?{' '}
-                <Link to="/signup" className="text-purple-600 hover:underline font-semibold">
+                <Link to="/start" className="text-purple-600 hover:underline font-semibold">
                   Hemen Kayıt Olun
                 </Link>
               </p>
@@ -159,7 +200,7 @@ const Login = () => {
           <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
             <h3 className="font-bold text-gray-900 mb-2">💡 Giriş Yapamıyor musunuz?</h3>
             <ul className="text-sm text-gray-700 space-y-2">
-              <li>• Kayıt olurken kullandığınız email adresini kullanın</li>
+              <li>• Kayıt olurken oluşturduğunuz kullanıcı adınızı kullanın</li>
               <li>• Şifrenizi unuttuysanız "Şifremi Unuttum" linkine tıklayın</li>
               <li>• Sorun devam ederse: <a href="mailto:destek@davet.digital" className="text-purple-600 hover:underline">destek@davet.digital</a></li>
             </ul>

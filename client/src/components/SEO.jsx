@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 
 const SEO = ({
   title = 'Davet Digital - Mükemmel Düğün Sitenizi Dakikalar İçinde Oluşturun',
-  description = 'QR kodlu fotoğraf paylaşımı, canlı ekran gösterileri, RSVP yönetimi ve 10 premium tema ile muhteşem düğün sitenizi oluşturun. Kod yazmaya gerek yok. 14 günlük ücretsiz deneme.',
+  description = 'QR kodlu fotoğraf paylaşımı, canlı ekran gösterileri, RSVP yönetimi ve 10 premium tema ile muhteşem düğün sitenizi oluşturun. Kod yazmaya gerek yok. 30 günlük ücretsiz deneme.',
   keywords = 'düğün sitesi, düğün davetiyesi, online davetiye, QR kod düğün, düğün fotoğraf paylaşımı, RSVP, düğün organizasyon, davet.digital',
   ogImage = 'https://davet.digital/og-image.jpg',
   url = 'https://davet.digital/',

@@ -11,6 +11,9 @@ body {
 
 .font-script {
   font-family: 'Great Vibes', cursive;
+  line-height: 1.4;
+  padding-top: 0.15em;
+  padding-bottom: 0.15em;
 }
 
 .font-serif {

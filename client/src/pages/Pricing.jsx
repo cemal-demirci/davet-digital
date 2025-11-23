@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Check, Heart, Crown, Sparkles, Zap } from 'lucide-react'
+import { Check, Heart, Crown, Sparkles, Zap, Building2, PartyPopper, Cake, GraduationCap, Baby } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
@@ -15,17 +15,21 @@ const Pricing = () => {
       icon: <Heart className="w-8 h-8" />,
       color: 'from-pink-500 to-rose-500',
       features: [
-        '3 Premium Tema',
-        '50 Misafir',
-        'Fotoğraf Galerisi (100 fotoğraf)',
+        '50 Misafir Kapasitesi',
+        '100 Fotoğraf Depolama (500 MB)',
         'RSVP Yönetimi',
-        'Temel Timeline',
-        'Mobil Uyumlu',
+        'Misafir Mesajları',
+        'Etkinlik Yönetimi',
+        'Hediye Listesi',
+        'Fotoğraf Galerisi',
+        'Özel Site Adresi (slug)',
+        'Mobil Uyumlu Tasarım',
         'Email Destek',
-        '365 Gün Erişim',
+        '30 Gün Erişim',
         '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
-      popular: false
+      popular: false,
+      category: 'wedding'
     },
     {
       name: 'Premium',
@@ -35,22 +39,24 @@ const Pricing = () => {
       icon: <Sparkles className="w-8 h-8" />,
       color: 'from-purple-500 to-pink-500',
       features: [
-        '10 Premium Tema',
-        '200 Misafir',
-        'Sınırsız Fotoğraf',
-        'QR Kod Misafir Yükleme',
-        'Canlı Fotoğraf Duvarı (TV)',
-        'Gelişmiş RSVP Sistemi',
-        'Onaylı Misafir Galerisi',
-        'Özel Timeline & Etkinlikler',
-        'Şifre Koruması',
+        '200 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (2 GB Depolama)',
+        'QR Kod Misafir Fotoğraf Yükleme',
+        'Canlı Fotoğraf Duvarı (TV için)',
+        'Onaylanmış Misafir Galerisi',
+        'RSVP Gelişmiş Yönetim',
+        'Misafir Mesajları & Yorumlar',
+        'Hediye Listesi',
+        'Etkinlik Timeline',
+        'Şifre Korumalı Site',
         'Analytics Dashboard',
-        'Öncelikli Destek',
-        '365 Gün Erişim',
         'Özel Domain Desteği',
+        'Öncelikli Email Destek',
+        '90 Gün Erişim',
         '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
-      popular: true
+      popular: true,
+      category: 'wedding'
     },
     {
       name: 'Platinum',
@@ -60,40 +66,210 @@ const Pricing = () => {
       icon: <Crown className="w-8 h-8" />,
       color: 'from-amber-500 to-yellow-500',
       features: [
-        'Tüm Premium Özellikler',
         'Sınırsız Misafir',
-        'Sınırsız Depolama',
-        'Çoklu Dil Desteği',
+        'Sınırsız Fotoğraf & Depolama',
+        'QR Kod Sistemi',
+        'Canlı Fotoğraf Duvarı',
+        'Çoklu Dil Desteği (TR/EN)',
         'Video Entegrasyonu',
-        'Canlı Yayın Desteği',
-        'Gelişmiş Analytics',
+        'Gelişmiş Analytics & Raporlar',
         'SEO Optimizasyonu',
         'White-Label Seçeneği',
+        'Google Drive Yedekleme',
+        'Fotoğraf ZIP İndirme',
+        'Öncelik Desteği',
+        'Özel Hesap Yöneticisi',
+        'Özel Domain',
+        'Sınırsız Erişim (Ömür Boyu)',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'wedding'
+    },
+    {
+      name: 'Kurumsal',
+      price: '₺7.999',
+      period: 'tek seferlik',
+      description: 'Şirketler için özel çözüm',
+      icon: <Building2 className="w-8 h-8" />,
+      color: 'from-blue-500 to-cyan-500',
+      features: [
+        '🏢 Özel Kurumsal Panel',
+        'White-Label Çözüm',
+        'Kendi Logo & Branding',
+        'Özel Domain & SSL',
+        'Sınırsız Katılımcı',
+        'Sınırsız Depolama',
+        'Çoklu Etkinlik Yönetimi',
+        'Gelişmiş Analytics & Raporlama',
+        'API Entegrasyonu',
+        'SSO (Single Sign-On)',
+        'Özel Özellik Geliştirme (5 saat)',
         'Özel Hesap Yöneticisi',
         '7/24 Öncelikli Destek',
         '365 Gün Erişim',
-        'Özel Geliştirme (2 saat)',
         '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
-      popular: false
+      popular: false,
+      category: 'corporate'
+    },
+    {
+      name: 'Sünnet',
+      price: '₺1.499',
+      period: 'tek seferlik',
+      description: 'Çocuğunuzun özel günü için',
+      icon: <PartyPopper className="w-8 h-8" />,
+      color: 'from-orange-500 to-amber-500',
+      features: [
+        '100 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (1 GB)',
+        'QR Kod Fotoğraf Paylaşımı',
+        'Misafir Fotoğraf Galerisi',
+        'RSVP Yönetimi',
+        'Hediye Takip Sistemi',
+        'Misafir Mesajları',
+        'Etkinlik Programı',
+        'Çocuk Dostu Arayüz',
+        'Dijital Albüm',
+        'Özel Site Adresi',
+        'Mobil Uyumlu',
+        'Email Destek',
+        '60 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'circumcision'
+    },
+    {
+      name: 'Nişan',
+      price: '₺1.299',
+      period: 'tek seferlik',
+      description: 'Nişan töreniniz için',
+      icon: <Heart className="w-8 h-8" />,
+      color: 'from-rose-500 to-pink-500',
+      features: [
+        '100 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (1 GB)',
+        'QR Kod Fotoğraf Paylaşımı',
+        'Canlı Fotoğraf Duvarı',
+        'RSVP Yönetimi',
+        'Misafir Mesajları',
+        'Etkinlik Timeline',
+        'Hediye Listesi',
+        'Romantik Temalar',
+        'Geri Sayım Sayacı',
+        'Özel Site Adresi',
+        'Mobil Uyumlu',
+        'Email Destek',
+        '60 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'engagement'
+    },
+    {
+      name: 'Doğum Günü',
+      price: '₺1.199',
+      period: 'tek seferlik',
+      description: 'Doğum günü partiniz için',
+      icon: <Cake className="w-8 h-8" />,
+      color: 'from-yellow-500 to-orange-500',
+      features: [
+        '80 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (800 MB)',
+        'QR Kod Fotoğraf Paylaşımı',
+        'Misafir Fotoğraf Galerisi',
+        'RSVP Yönetimi',
+        'Hediye Listesi',
+        'Misafir Mesajları',
+        'Parti Programı',
+        'Eğlenceli Temalar',
+        'Yaş Sayacı',
+        'Özel Site Adresi',
+        'Mobil Uyumlu',
+        'Email Destek',
+        '45 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'birthday'
+    },
+    {
+      name: 'Mezuniyet',
+      price: '₺1.199',
+      period: 'tek seferlik',
+      description: 'Mezuniyet kutlamanız için',
+      icon: <GraduationCap className="w-8 h-8" />,
+      color: 'from-blue-500 to-indigo-500',
+      features: [
+        '100 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (1 GB)',
+        'QR Kod Fotoğraf Paylaşımı',
+        'Mezuniyet Albümü',
+        'RSVP Yönetimi',
+        'Misafir Mesajları',
+        'Başarı Timeline',
+        'Akademik Bilgiler',
+        'Profesyonel Temalar',
+        'Anı Defteri',
+        'Özel Site Adresi',
+        'Mobil Uyumlu',
+        'Email Destek',
+        '60 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'graduation'
+    },
+    {
+      name: 'Baby Shower',
+      price: '₺1.199',
+      period: 'tek seferlik',
+      description: 'Bebek partiniz için',
+      icon: <Baby className="w-8 h-8" />,
+      color: 'from-cyan-500 to-blue-500',
+      features: [
+        '80 Misafir Kapasitesi',
+        'Sınırsız Fotoğraf (800 MB)',
+        'QR Kod Fotoğraf Paylaşımı',
+        'Misafir Fotoğraf Galerisi',
+        'RSVP Yönetimi',
+        'Hediye Listesi & Takip',
+        'Misafir Dilekleri',
+        'Parti Programı',
+        'Bebek Temaları (Mavi/Pembe)',
+        'İsim Tahmini Oyunu',
+        'Özel Site Adresi',
+        'Mobil Uyumlu',
+        'Email Destek',
+        '45 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
+      ],
+      popular: false,
+      category: 'baby-shower'
     }
   ]
 
   const comparisonFeatures = [
-    { name: 'Premium Temalar', temel: '3', premium: '10', platinum: 'Tümü' },
-    { name: 'Misafir Sayısı', temel: '50', premium: '200', platinum: 'Sınırsız' },
-    { name: 'Fotoğraf Depolama', temel: '100 adet', premium: 'Sınırsız', platinum: 'Sınırsız' },
+    { name: 'Misafir Kapasitesi', temel: '50', premium: '200', platinum: 'Sınırsız' },
+    { name: 'Fotoğraf Depolama', temel: '100 (500 MB)', premium: 'Sınırsız (2 GB)', platinum: 'Sınırsız' },
     { name: 'QR Kod Sistemi', temel: '❌', premium: '✅', platinum: '✅' },
     { name: 'Canlı Fotoğraf Duvarı', temel: '❌', premium: '✅', platinum: '✅' },
-    { name: 'Geri Sayım Sayacı', temel: '✅', premium: '✅', platinum: '✅' },
-    { name: 'RSVP Yönetimi', temel: 'Temel', premium: 'Gelişmiş', platinum: 'Gelişmiş' },
+    { name: 'Misafir Fotoğraf Onay', temel: '❌', premium: '✅', platinum: '✅' },
+    { name: 'RSVP Yönetimi', temel: '✅', premium: '✅', platinum: '✅' },
+    { name: 'Misafir Mesajları', temel: '✅', premium: '✅', platinum: '✅' },
+    { name: 'Hediye Listesi', temel: '✅', premium: '✅', platinum: '✅' },
+    { name: 'Etkinlik Timeline', temel: '✅', premium: '✅', platinum: '✅' },
     { name: 'Şifre Koruması', temel: '❌', premium: '✅', platinum: '✅' },
     { name: 'Analytics Dashboard', temel: '❌', premium: '✅', platinum: '✅' },
     { name: 'Özel Domain', temel: '❌', premium: '✅', platinum: '✅' },
-    { name: 'Çoklu Dil', temel: '❌', premium: '❌', platinum: '✅' },
-    { name: 'Destek', temel: 'Email', premium: 'Öncelikli', platinum: '7/24' },
-    { name: 'Erişim Süresi', temel: '365 Gün', premium: '365 Gün', platinum: '365 Gün' },
-    { name: 'Deneme Süresi', temel: '30 Gün Full', premium: '30 Gün Full', platinum: '30 Gün Full' }
+    { name: 'Google Drive Yedekleme', temel: '❌', premium: '❌', platinum: '✅' },
+    { name: 'ZIP İndirme', temel: '❌', premium: '❌', platinum: '✅' },
+    { name: 'Çoklu Dil (TR/EN)', temel: '❌', premium: '❌', platinum: '✅' },
+    { name: 'SEO Optimizasyonu', temel: '❌', premium: '❌', platinum: '✅' },
+    { name: 'Destek', temel: 'Email', premium: 'Öncelikli', platinum: 'Öncelikli' },
+    { name: 'Erişim Süresi', temel: '30 Gün', premium: '90 Gün', platinum: 'Sınırsız' },
+    { name: 'Ücretsiz Deneme', temel: '30 Gün', premium: '30 Gün', platinum: '30 Gün' }
   ]
 
   const faqs = [
@@ -115,7 +291,7 @@ const Pricing = () => {
     },
     {
       question: 'Para iade politikanız var mı?',
-      answer: 'Evet! Hizmetimizden memnun kalmazsanız 14 günlük para iade garantisi sunuyoruz.'
+      answer: 'Evet! Hizmetimizden memnun kalmazsanız 30 günlük para iade garantisi sunuyoruz.'
     }
   ]
 
@@ -124,7 +300,7 @@ const Pricing = () => {
       <FloatingDecor />
       <SEO
         title="Fiyatlandırma - Davet Digital | Şeffaf ve Basit Paketler"
-        description="Davet Digital düğün sitesi paketleri: Temel (₺999), Premium (₺2.499), Platinum (₺4.999). Tek seferlik ödeme, gizli ücret yok. 14 günlük para iade garantisi."
+        description="Davet Digital düğün sitesi paketleri: Temel (₺999), Premium (₺2.499), Platinum (₺4.999). Tek seferlik ödeme, gizli ücret yok. 30 günlük para iade garantisi."
         keywords="düğün sitesi fiyat, düğün davetiyesi paketleri, online davetiye fiyat, düğün sitesi ücret"
         url="https://davet.digital/pricing"
       />
@@ -142,14 +318,22 @@ const Pricing = () => {
         <p className="text-2xl text-gray-600 max-w-3xl mx-auto mb-4">
           Tek seferlik ödeme. Gizli ücret yok. Aylık abonelik yok.
         </p>
-        <p className="text-lg text-gray-500">
+        <p className="text-lg text-gray-500 mb-6">
           Özel gününüz için mükemmel paketi seçin
         </p>
+        <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 max-w-2xl mx-auto border-2 border-purple-200">
+          <p className="text-lg text-gray-700 font-semibold">
+            🎁 Tüm paketlerde 30 günlük ücretsiz deneme ile başlayın!
+          </p>
+          <p className="text-sm text-gray-600 mt-2">
+            Paket seçimini daha sonra hesabınızdan yapabilirsiniz
+          </p>
+        </div>
       </div>
 
       {/* Pricing Cards */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -193,7 +377,7 @@ const Pricing = () => {
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
-                  Hemen Başla
+                  30 Gün Ücretsiz Dene
                 </Link>
               </div>
             </div>
@@ -240,9 +424,9 @@ const Pricing = () => {
               <Check className="w-12 h-12 text-white" />
             </div>
           </div>
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">14 Günlük Para İade Garantisi</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">30 Günlük Para İade Garantisi</h3>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Davet Digital'i risksiz deneyin. 14 gün içinde tamamen memnun kalmazsanız,
+            Davet Digital'i risksiz deneyin. 30 gün içinde tamamen memnun kalmazsanız,
             paranızın tamamını iade ederiz. Soru sormadan.
           </p>
         </div>
