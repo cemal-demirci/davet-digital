@@ -92,10 +92,10 @@ export const getThemeClasses = (themeName = 'romantic-rose') => {
     hoverBgPrimary700: `hover:bg-${theme.primary}-700`,
     hoverTextPrimary600: `hover:text-${theme.primary}-600`,
 
-    // Gradients
-    gradientPrimary: `from-${theme.primary}-50 via-${theme.secondary}-50 to-${theme.primary}-100`,
-    gradientDark: `from-${theme.primary}-100 to-${theme.secondary}-100`,
-    gradientHero: `from-${theme.primary}-200/30 to-${theme.secondary}-200/30`,
+    // Gradients - improved with better contrast
+    gradientPrimary: `from-${theme.primary}-50 via-${theme.secondary}-50 to-white`,
+    gradientDark: `from-${theme.primary}-600 to-${theme.secondary}-600`,
+    gradientHero: `from-${theme.primary}-100/80 via-${theme.secondary}-100/80 to-${theme.primary}-50/80`,
 
     // Raw color names for dynamic usage
     primary: theme.primary,
@@ -114,4 +114,31 @@ export const getGradientClass = (themeName = 'romantic-rose') => {
 export const getHeroGradient = (themeName = 'romantic-rose') => {
   const classes = getThemeClasses(themeName)
   return `bg-gradient-to-br ${classes.gradientHero}`
+}
+
+// Get text color for contrast - for headings and primary text
+export const getTextColor = (themeName = 'romantic-rose') => {
+  const darkThemes = ['elegant-black', 'royal-navy']
+  if (darkThemes.includes(themeName)) {
+    return 'text-white'
+  }
+  return 'text-gray-900'
+}
+
+// Get secondary text color - for descriptions and body text
+export const getSecondaryTextColor = (themeName = 'romantic-rose') => {
+  const darkThemes = ['elegant-black', 'royal-navy']
+  if (darkThemes.includes(themeName)) {
+    return 'text-gray-300'
+  }
+  return 'text-gray-700'
+}
+
+// Get card background color with proper contrast
+export const getCardBgColor = (themeName = 'romantic-rose') => {
+  const darkThemes = ['elegant-black', 'royal-navy']
+  if (darkThemes.includes(themeName)) {
+    return 'bg-gray-800/50 backdrop-blur-sm'
+  }
+  return 'bg-white/90 backdrop-blur-sm'
 }

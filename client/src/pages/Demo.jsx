@@ -182,21 +182,102 @@ const Demo = () => {
               </div>
 
               {/* Demo Content */}
-              <div className="aspect-video bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 flex items-center justify-center p-12">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">
-                    {demoSections.find(s => s.id === activeTab)?.icon}
+              <div className="aspect-video bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 overflow-hidden">
+                {activeTab === 'home' && (
+                  <div className="h-full p-8 space-y-6">
+                    <div className="text-center mb-6">
+                      <h1 className="text-4xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-2">
+                        Ayşe & Mehmet
+                      </h1>
+                      <p className="text-gray-600">15 Haziran 2024</p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
+                        <Calendar className="w-8 h-8 text-pink-500 mx-auto mb-2" />
+                        <p className="text-sm font-semibold">Geri Sayım</p>
+                        <p className="text-xs text-gray-600">45 Gün</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
+                        <Camera className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                        <p className="text-sm font-semibold">Galeri</p>
+                        <p className="text-xs text-gray-600">120 Fotoğraf</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
+                        <Users className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                        <p className="text-sm font-semibold">Misafirler</p>
+                        <p className="text-xs text-gray-600">150 Kişi</p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    {demoSections.find(s => s.id === activeTab)?.name}
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Demo içeriği yakında gelecek
-                  </p>
-                  <div className="flex justify-center">
-                    <CheckCircle className="w-16 h-16 text-green-500" />
+                )}
+                {activeTab === 'gallery' && (
+                  <div className="h-full p-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Fotoğraf Galerisi</h2>
+                    <div className="grid grid-cols-4 gap-2">
+                      {[...Array(12)].map((_, i) => (
+                        <div key={i} className="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-lg flex items-center justify-center">
+                          <Camera className="w-8 h-8 text-white" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+                {activeTab === 'timeline' && (
+                  <div className="h-full p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Düğün Programı</h2>
+                    <div className="space-y-4 max-w-xl mx-auto">
+                      {[
+                        { time: '14:00', event: 'Misafir Karşılama' },
+                        { time: '15:00', event: 'Nikah Töreni' },
+                        { time: '16:00', event: 'Kokteyil' },
+                        { time: '18:00', event: 'Akşam Yemeği' },
+                        { time: '20:00', event: 'İlk Dans' }
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center space-x-4 bg-white rounded-lg p-3 shadow-sm">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                            {item.time}
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-semibold text-gray-800">{item.event}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {activeTab === 'rsvp' && (
+                  <div className="h-full p-8 flex items-center justify-center">
+                    <div className="bg-white rounded-2xl p-8 shadow-xl max-w-md w-full">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Katılım Bildirimi</h2>
+                      <div className="space-y-4">
+                        <input type="text" placeholder="Adınız Soyadınız" className="w-full px-4 py-3 rounded-lg border border-gray-300" />
+                        <input type="email" placeholder="Email" className="w-full px-4 py-3 rounded-lg border border-gray-300" />
+                        <select className="w-full px-4 py-3 rounded-lg border border-gray-300">
+                          <option>Katılacağım</option>
+                          <option>Katılamayacağım</option>
+                        </select>
+                        <button className="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold">
+                          Gönder
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {activeTab === 'qr' && (
+                  <div className="h-full p-8 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100">
+                    <div className="text-center">
+                      <div className="w-48 h-48 bg-white rounded-2xl shadow-2xl mx-auto mb-6 flex items-center justify-center">
+                        <QrCode className="w-32 h-32 text-gray-800" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Masa 12</h3>
+                      <p className="text-gray-600 mb-4">QR kodu tarayın ve fotoğraflarınızı yükleyin</p>
+                      <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold shadow-lg">
+                        <Camera className="w-5 h-5 inline mr-2" />
+                        Fotoğraf Yükle
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
