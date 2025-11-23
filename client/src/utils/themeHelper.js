@@ -92,10 +92,11 @@ export const getThemeClasses = (themeName = 'romantic-rose') => {
     hoverBgPrimary700: `hover:bg-${theme.primary}-700`,
     hoverTextPrimary600: `hover:text-${theme.primary}-600`,
 
-    // Gradients - improved with better contrast
-    gradientPrimary: `from-${theme.primary}-50 via-${theme.secondary}-50 to-white`,
-    gradientDark: `from-${theme.primary}-600 to-${theme.secondary}-600`,
-    gradientHero: `from-${theme.primary}-100/80 via-${theme.secondary}-100/80 to-${theme.primary}-50/80`,
+    // Gradients - vibrant and clear
+    gradientPrimary: `from-${theme.primary}-100 via-${theme.secondary}-100 to-${theme.accent}-50`,
+    gradientDark: `from-${theme.primary}-600 via-${theme.secondary}-600 to-${theme.accent}-700`,
+    gradientHero: `from-${theme.primary}-200 via-${theme.secondary}-200 to-${theme.accent}-100`,
+    gradientButton: `from-${theme.primary}-500 via-${theme.secondary}-500 to-${theme.accent}-600`,
 
     // Raw color names for dynamic usage
     primary: theme.primary,

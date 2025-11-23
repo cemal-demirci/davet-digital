@@ -182,7 +182,7 @@ const Demo = () => {
               </div>
 
               {/* Demo Content */}
-              <div className="aspect-video bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 overflow-hidden">
+              <div className="aspect-video bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 overflow-hidden">
                 {activeTab === 'home' && (
                   <div className="h-full p-8 space-y-6">
                     <div className="text-center mb-6">
@@ -192,20 +192,20 @@ const Demo = () => {
                       <p className="text-gray-600">15 Haziran 2024</p>
                     </div>
                     <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
-                        <Calendar className="w-8 h-8 text-pink-500 mx-auto mb-2" />
-                        <p className="text-sm font-semibold">Geri Sayım</p>
-                        <p className="text-xs text-gray-600">45 Gün</p>
+                      <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <Calendar className="w-10 h-10 text-white mx-auto mb-2" />
+                        <p className="text-sm font-bold text-white">Geri Sayım</p>
+                        <p className="text-2xl font-bold text-white mt-1">45 Gün</p>
                       </div>
-                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
-                        <Camera className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-                        <p className="text-sm font-semibold">Galeri</p>
-                        <p className="text-xs text-gray-600">120 Fotoğraf</p>
+                      <div className="bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <Camera className="w-10 h-10 text-white mx-auto mb-2" />
+                        <p className="text-sm font-bold text-white">Galeri</p>
+                        <p className="text-2xl font-bold text-white mt-1">120</p>
                       </div>
-                      <div className="bg-white rounded-lg p-4 text-center shadow-md">
-                        <Users className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                        <p className="text-sm font-semibold">Misafirler</p>
-                        <p className="text-xs text-gray-600">150 Kişi</p>
+                      <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-5 text-center shadow-lg hover:shadow-xl transition-shadow">
+                        <Users className="w-10 h-10 text-white mx-auto mb-2" />
+                        <p className="text-sm font-bold text-white">Misafirler</p>
+                        <p className="text-2xl font-bold text-white mt-1">150</p>
                       </div>
                     </div>
                   </div>
@@ -215,8 +215,13 @@ const Demo = () => {
                     <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Fotoğraf Galerisi</h2>
                     <div className="grid grid-cols-4 gap-2">
                       {[...Array(12)].map((_, i) => (
-                        <div key={i} className="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-lg flex items-center justify-center">
-                          <Camera className="w-8 h-8 text-white" />
+                        <div key={i} className={`aspect-square rounded-lg flex items-center justify-center shadow-md ${
+                          i % 4 === 0 ? 'bg-gradient-to-br from-pink-400 to-rose-500' :
+                          i % 4 === 1 ? 'bg-gradient-to-br from-purple-400 to-fuchsia-500' :
+                          i % 4 === 2 ? 'bg-gradient-to-br from-blue-400 to-cyan-500' :
+                          'bg-gradient-to-br from-violet-400 to-purple-500'
+                        }`}>
+                          <Camera className="w-8 h-8 text-white/90" />
                         </div>
                       ))}
                     </div>
@@ -233,8 +238,14 @@ const Demo = () => {
                         { time: '18:00', event: 'Akşam Yemeği' },
                         { time: '20:00', event: 'İlk Dans' }
                       ].map((item, i) => (
-                        <div key={i} className="flex items-center space-x-4 bg-white rounded-lg p-3 shadow-sm">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                        <div key={i} className="flex items-center space-x-4 bg-white rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow">
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg ${
+                            i === 0 ? 'bg-gradient-to-br from-pink-500 to-rose-600' :
+                            i === 1 ? 'bg-gradient-to-br from-purple-500 to-fuchsia-600' :
+                            i === 2 ? 'bg-gradient-to-br from-blue-500 to-cyan-600' :
+                            i === 3 ? 'bg-gradient-to-br from-violet-500 to-purple-600' :
+                            'bg-gradient-to-br from-rose-500 to-pink-600'
+                          }`}>
                             {item.time}
                           </div>
                           <div className="flex-1">
@@ -264,15 +275,15 @@ const Demo = () => {
                   </div>
                 )}
                 {activeTab === 'qr' && (
-                  <div className="h-full p-8 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100">
+                  <div className="h-full p-8 flex items-center justify-center bg-gradient-to-br from-purple-200 via-pink-200 to-rose-200">
                     <div className="text-center">
-                      <div className="w-48 h-48 bg-white rounded-2xl shadow-2xl mx-auto mb-6 flex items-center justify-center">
+                      <div className="w-48 h-48 bg-white rounded-2xl shadow-2xl mx-auto mb-6 flex items-center justify-center border-4 border-purple-300">
                         <QrCode className="w-32 h-32 text-gray-800" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Masa 12</h3>
-                      <p className="text-gray-600 mb-4">QR kodu tarayın ve fotoğraflarınızı yükleyin</p>
-                      <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold shadow-lg">
-                        <Camera className="w-5 h-5 inline mr-2" />
+                      <h3 className="text-3xl font-bold text-gray-900 mb-2">Masa 12</h3>
+                      <p className="text-gray-800 font-medium mb-4">QR kodu tarayın ve fotoğraflarınızı yükleyin</p>
+                      <button className="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-fuchsia-600 text-white rounded-full font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+                        <Camera className="w-6 h-6 inline mr-2" />
                         Fotoğraf Yükle
                       </button>
                     </div>
