@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import { Plus, Trash2, Download, QrCode as QrIcon, Printer, Share2 } from 'lucide-react'
-import axios from 'axios'
+import api from '../utils/api'
 import { themes } from '../themes/themes'
-import { API_URL } from '../config'
 
 
 const QRManager = () => {
@@ -18,7 +17,7 @@ const QRManager = () => {
 
   const fetchSettings = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/settings`)
+      const response = await api.get('/api/settings')
       setSettings(response.data)
     } catch (error) {
       console.error('Error fetching settings:', error)
@@ -31,7 +30,7 @@ const QRManager = () => {
 
   const fetchQRCodes = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/qrcodes`)
+      const response = await api.get('/api/qrcodes')
       setQrCodes(response.data)
     } catch (error) {
       console.error('Error fetching QR codes:', error)
@@ -56,13 +55,14 @@ const QRManager = () => {
         isTableQR: qrType === 'table'
       }
 
-      await axios.post(`${API_URL}/api/qrcodes`, qrData)
+      await api.post('/api/qrcodes', qrData)
       setNewQR({ name: '', tableNumber: '', count: 1 })
       fetchQRCodes()
       alert('QR kod(lar) oluşturuldu!')
     } catch (error) {
       console.error('Error creating QR code:', error)
-      alert('Oluşturma hatası!')
+      const errorMsg = error.response?.data?.message || error.response?.data?.error || 'Oluşturma hatası!'
+      alert(errorMsg)
     }
   }
 
@@ -70,7 +70,7 @@ const QRManager = () => {
     if (!confirm('Bu QR kodu silmek istediğinizden emin misiniz?')) return
 
     try {
-      await axios.delete(`${API_URL}/api/qrcodes/${id}`)
+      await api.delete(`/api/qrcodes/${id}`)
       fetchQRCodes()
       alert('QR kod silindi!')
     } catch (error) {

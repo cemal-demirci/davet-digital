@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Heart, Home, Calendar, Image, Users, Menu, X, Tv } from 'lucide-react'
+import { Heart, Home, Calendar, Image, Users, Menu, X, Tv, ClipboardList } from 'lucide-react'
 
 const Navbar = ({ coupleNames }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,11 +13,12 @@ const Navbar = ({ coupleNames }) => {
     { path: '/timeline', label: 'Program', icon: Calendar },
     { path: '/gallery', label: 'Galeri', icon: Image },
     { path: '/rsvp', label: 'Katılım', icon: Users },
+    { path: '/planner', label: 'Planlayıcı', icon: ClipboardList },
     { path: '/live-wall', label: 'Canlı Duvar', icon: Tv }
   ]
 
   // Marketing ve admin sayfalarında navbar gösterme
-  const marketingPaths = ['/', '/pricing', '/signup', '/demo', '/login']
+  const marketingPaths = ['/', '/pricing', '/signup', '/demo', '/login', '/eula']
   if (
     marketingPaths.includes(location.pathname) ||
     location.pathname.startsWith('/admin') ||
@@ -36,7 +37,7 @@ const Navbar = ({ coupleNames }) => {
             <Link to="/wedding" className="flex items-center space-x-2">
               <Heart className="w-6 h-6 text-romantic-500" />
               <span className="text-xl font-script text-romantic-600 hidden md:block">
-                {coupleNames || 'Düğünümüz'}
+                {coupleNames || 'Düğün Sitemiz'}
               </span>
             </Link>
 

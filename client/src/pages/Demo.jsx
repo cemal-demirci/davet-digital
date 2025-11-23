@@ -4,6 +4,7 @@ import { Heart, Calendar, Users, Camera, QrCode, Eye, ArrowRight, CheckCircle, S
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
+import FloatingDecor from '../components/FloatingDecor'
 
 const Demo = () => {
   const [activeTab, setActiveTab] = useState('home')
@@ -97,6 +98,7 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white">
+      <FloatingDecor />
       <SEO
         title="Canlı Demo - Davet Digital | Tüm Özellikleri Keşfedin"
         description="Davet Digital'in tüm özelliklerini canlı demo ile keşfedin: 10 premium tema, QR kod sistemi, canlı fotoğraf duvarı, RSVP yönetimi ve daha fazlası."

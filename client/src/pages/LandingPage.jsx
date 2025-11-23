@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield } from 'lucide-react'
+import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield, ClipboardList, LogIn } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
+import FloatingDecor from '../components/FloatingDecor'
 
 const LandingPage = () => {
   const features = [
@@ -47,6 +48,12 @@ const LandingPage = () => {
       title: 'Çoklu Dil Desteği',
       description: 'Türkçe, İngilizce ve daha fazla dil desteği',
       color: 'from-indigo-500 to-blue-500'
+    },
+    {
+      icon: <ClipboardList className="w-8 h-8" />,
+      title: 'Online Düğün Planlayıcı',
+      description: 'Bütçe takibi, görev listesi, misafir yönetimi ve daha fazlası ile düğününüzü profesyonelce planlayın',
+      color: 'from-teal-500 to-cyan-500'
     }
   ]
 
@@ -80,6 +87,7 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <FloatingDecor />
       <SEO
         title="Davet Digital - Mükemmel Düğün Sitenizi Dakikalar İçinde Oluşturun"
         description="QR kodlu fotoğraf paylaşımı, canlı ekran gösterileri, RSVP yönetimi ve 10 premium tema ile muhteşem düğün sitenizi oluşturun. Kod yazmaya gerek yok. 14 günlük ücretsiz deneme."
@@ -101,7 +109,7 @@ const LandingPage = () => {
               </div>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-script text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 mb-6 leading-tight">
               Davet Digital
             </h1>
 
@@ -134,6 +142,30 @@ const LandingPage = () => {
             <p className="mt-6 text-sm text-gray-500">
               ✨ Kredi kartı gerektirmez • 14 günlük ücretsiz deneme • İstediğiniz zaman iptal edin
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Login Section for Existing Customers */}
+      <div className="bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100 py-12 border-y-4 border-purple-200 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <LogIn className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Zaten Üye Misiniz?</h3>
+                <p className="text-gray-700">Düğün sitenize giriş yapın ve yönetmeye devam edin</p>
+              </div>
+            </div>
+            <Link
+              to="/login"
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-lg font-semibold hover:shadow-2xl transform hover:scale-105 transition-all flex items-center space-x-2 whitespace-nowrap"
+            >
+              <LogIn className="w-5 h-5" />
+              <span>Giriş Yap</span>
+            </Link>
           </div>
         </div>
       </div>

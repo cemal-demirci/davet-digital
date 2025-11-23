@@ -5,6 +5,7 @@ import { Heart, Sparkles, Check, AlertCircle, Loader } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
+import FloatingDecor from '../components/FloatingDecor'
 import { API_URL } from '../config'
 
 
@@ -15,6 +16,7 @@ const Signup = () => {
   const [slugAvailable, setSlugAvailable] = useState(null)
   const [slugMessage, setSlugMessage] = useState('') // For easter egg or unavailable reason
   const [checkingSlug, setCheckingSlug] = useState(false)
+  const [acceptedEULA, setAcceptedEULA] = useState(false)
 
   const [formData, setFormData] = useState({
     ownerName: '',
@@ -74,6 +76,12 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
+    if (!acceptedEULA) {
+      setError('Lütfen Kullanıcı Sözleşmesini kabul edin.')
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -119,6 +127,7 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white">
+      <FloatingDecor />
       <SEO
         title="Kayıt Ol - Davet Digital | 14 Günlük Ücretsiz Deneme"
         description="Davet Digital'e kaydolun ve dakikalar içinde mükemmel düğün sitenizi oluşturun. Özel alt alan adı, 10 premium tema, QR kod sistemi. Kredi kartı gerektirmez."
@@ -326,11 +335,30 @@ const Signup = () => {
               </div>
             </div>
 
+            {/* EULA Checkbox */}
+            <div className="pt-6 border-t border-gray-200">
+              <div className="flex items-start space-x-3 mb-6 bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-xl">
+                <input
+                  type="checkbox"
+                  id="acceptEULA"
+                  checked={acceptedEULA}
+                  onChange={(e) => setAcceptedEULA(e.target.checked)}
+                  className="mt-1 w-5 h-5 text-purple-600 border-gray-300 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                />
+                <label htmlFor="acceptEULA" className="text-sm text-gray-700 cursor-pointer">
+                  <Link to="/eula" target="_blank" className="text-purple-600 hover:underline font-semibold">
+                    Kullanıcı Sözleşmesini
+                  </Link>
+                  {' '}okudum, anladım ve kabul ediyorum. *
+                </label>
+              </div>
+            </div>
+
             {/* Submit */}
-            <div className="pt-6">
+            <div>
               <button
                 type="submit"
-                disabled={loading || slugAvailable === false || !formData.slug}
+                disabled={loading || slugAvailable === false || !formData.slug || !acceptedEULA}
                 className="w-full py-4 rounded-xl font-semibold text-lg bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-2xl transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {loading ? (

@@ -58,6 +58,44 @@ const tenantResolver = async (req, res, next) => {
       req.tenantId = tenant._id;
     }
 
+    // For development on localhost: create/use demo tenant if none found
+    if (!tenant && req.get('host')?.includes('localhost')) {
+      try {
+        let demoTenant = await Tenant.findOne({ slug: 'demo' });
+        if (!demoTenant) {
+          // Create default demo tenant with all features
+          demoTenant = await Tenant.create({
+            slug: 'demo',
+            ownerEmail: 'demo@davet.digital',
+            package: 'platinum',
+            subscriptionStatus: 'active',
+            features: {
+              customDomain: true,
+              rsvpManagement: true,
+              photoGallery: true,
+              livePhotoWall: true,
+              guestMessages: true,
+              eventTimeline: true,
+              giftRegistry: true,
+              qrCodeUpload: true,
+              emailNotifications: true,
+              analytics: true,
+              customThemes: true
+            },
+            limits: {
+              maxGuests: -1,
+              maxPhotos: -1,
+              maxStorage: -1
+            }
+          });
+        }
+        req.tenant = demoTenant;
+        req.tenantId = demoTenant._id;
+      } catch (error) {
+        console.error('Error creating/finding demo tenant:', error);
+      }
+    }
+
     next();
   } catch (error) {
     console.error('Tenant resolution error:', error);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Shield, Save, Upload, Trash2, Plus, Heart, Settings as SettingsIcon, Image as ImageIcon, Calendar, Eye, EyeOff, QrCode, Users, CheckSquare, MessageSquare, Gift, Clock } from 'lucide-react'
+import { Shield, Save, Upload, Trash2, Plus, Heart, Settings as SettingsIcon, Image as ImageIcon, Calendar, Eye, EyeOff, QrCode, Users, CheckSquare, MessageSquare, Gift, Clock, Cloud } from 'lucide-react'
 import axios from 'axios'
 import QRManager from '../components/QRManager'
 import GuestGallery from '../components/GuestGallery'
@@ -7,6 +7,8 @@ import RSVPManager from '../components/RSVPManager'
 import MessageManager from '../components/MessageManager'
 import GiftManager from '../components/GiftManager'
 import TimelineManager from '../components/TimelineManager'
+import GoogleDriveManager from '../components/GoogleDriveManager'
+import { formatDateTime } from '../utils/dateFormatter'
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -295,6 +297,17 @@ const Admin = () => {
             >
               <Clock className="w-5 h-5 mr-2" />
               Program
+            </button>
+            <button
+              onClick={() => setActiveTab('gdrive')}
+              className={`flex items-center px-6 py-4 font-medium transition-colors ${
+                activeTab === 'gdrive'
+                  ? 'text-romantic-600 border-b-2 border-romantic-600'
+                  : 'text-gray-600 hover:text-romantic-600'
+              }`}
+            >
+              <Cloud className="w-5 h-5 mr-2" />
+              Google Drive
             </button>
           </div>
         </div>
@@ -628,7 +641,7 @@ const Admin = () => {
                   <div key={event._id} className="border border-gray-200 rounded-lg p-4 flex justify-between items-start">
                     <div>
                       <h3 className="font-bold text-lg">{event.name}</h3>
-                      <p className="text-gray-600">{new Date(event.date).toLocaleString('tr-TR')}</p>
+                      <p className="text-gray-600">{formatDateTime(event.date)}</p>
                       {event.location && <p className="text-gray-600">📍 {event.location}</p>}
                       {event.description && <p className="text-gray-500 text-sm mt-2">{event.description}</p>}
                     </div>
@@ -656,12 +669,12 @@ const Admin = () => {
               <label className="block w-full">
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-romantic-500 transition-colors cursor-pointer">
                   <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                  <p className="text-gray-600">Fotoğraf yüklemek için tıklayın</p>
-                  <p className="text-sm text-gray-400 mt-2">JPG, PNG (Max 10MB)</p>
+                  <p className="text-gray-600">Fotoğraf/Video/Müzik yüklemek için tıklayın</p>
+                  <p className="text-sm text-gray-400 mt-2">JPG, PNG, MP4, MP3 (Max 10MB)</p>
                 </div>
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/*,video/*,audio/*,.mp3,.wav,.m4a"
                   onChange={handlePhotoUpload}
                   className="hidden"
                 />
@@ -714,6 +727,9 @@ const Admin = () => {
 
         {/* Timeline Tab */}
         {activeTab === 'timeline' && <TimelineManager />}
+
+        {/* Google Drive Tab */}
+        {activeTab === 'gdrive' && <GoogleDriveManager />}
       </div>
     </div>
   )

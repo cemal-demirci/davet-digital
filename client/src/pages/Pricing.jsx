@@ -3,6 +3,7 @@ import { Check, Heart, Crown, Sparkles, Zap } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
+import FloatingDecor from '../components/FloatingDecor'
 
 const Pricing = () => {
   const plans = [
@@ -21,7 +22,8 @@ const Pricing = () => {
         'Temel Timeline',
         'Mobil Uyumlu',
         'Email Destek',
-        '30 Gün Erişim'
+        '365 Gün Erişim',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
       popular: false
     },
@@ -44,8 +46,9 @@ const Pricing = () => {
         'Şifre Koruması',
         'Analytics Dashboard',
         'Öncelikli Destek',
-        '90 Gün Erişim',
-        'Özel Domain Desteği'
+        '365 Gün Erişim',
+        'Özel Domain Desteği',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
       popular: true
     },
@@ -68,8 +71,9 @@ const Pricing = () => {
         'White-Label Seçeneği',
         'Özel Hesap Yöneticisi',
         '7/24 Öncelikli Destek',
-        'Ömür Boyu Erişim',
-        'Özel Geliştirme (2 saat)'
+        '365 Gün Erişim',
+        'Özel Geliştirme (2 saat)',
+        '🎁 İlk 30 gün tüm özellikler aktif!'
       ],
       popular: false
     }
@@ -88,7 +92,8 @@ const Pricing = () => {
     { name: 'Özel Domain', temel: '❌', premium: '✅', platinum: '✅' },
     { name: 'Çoklu Dil', temel: '❌', premium: '❌', platinum: '✅' },
     { name: 'Destek', temel: 'Email', premium: 'Öncelikli', platinum: '7/24' },
-    { name: 'Erişim Süresi', temel: '30 Gün', premium: '90 Gün', platinum: 'Ömür Boyu' }
+    { name: 'Erişim Süresi', temel: '365 Gün', premium: '365 Gün', platinum: '365 Gün' },
+    { name: 'Deneme Süresi', temel: '30 Gün Full', premium: '30 Gün Full', platinum: '30 Gün Full' }
   ]
 
   const faqs = [
@@ -116,6 +121,7 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-pink-50 to-white">
+      <FloatingDecor />
       <SEO
         title="Fiyatlandırma - Davet Digital | Şeffaf ve Basit Paketler"
         description="Davet Digital düğün sitesi paketleri: Temel (₺999), Premium (₺2.499), Platinum (₺4.999). Tek seferlik ödeme, gizli ücret yok. 14 günlük para iade garantisi."

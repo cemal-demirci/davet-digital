@@ -590,6 +590,121 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Google Drive Routes
+const GoogleDriveService = require('./services/googleDrive');
+
+// Get Google Drive auth URL
+app.get('/api/google-drive/auth-url', requireTenant, (req, res) => {
+  try {
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/google-drive/callback`;
+
+    const authUrl = GoogleDriveService.getAuthUrl(clientId, redirectUri);
+    res.json({ authUrl });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// OAuth callback
+app.get('/api/google-drive/callback', async (req, res) => {
+  try {
+    const { code } = req.query;
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/google-drive/callback`;
+
+    const tokens = await GoogleDriveService.getTokensFromCode(code, clientId, clientSecret, redirectUri);
+
+    // Store refresh token in tenant
+    const tenantId = req.query.state; // Pass tenant ID in state parameter
+    if (tenantId) {
+      await Tenant.findByIdAndUpdate(tenantId, {
+        'googleDrive.enabled': true,
+        'googleDrive.refreshToken': tokens.refresh_token
+      });
+    }
+
+    res.send('<html><body><h2>Google Drive bağlantısı başarılı!</h2><p>Bu sayfayı kapatabilirsiniz.</p><script>window.close();</script></body></html>');
+  } catch (error) {
+    res.status(500).send(`<html><body><h2>Hata!</h2><p>${error.message}</p></body></html>`);
+  }
+});
+
+// Backup photos to Google Drive
+app.post('/api/google-drive/backup', requireTenant, async (req, res) => {
+  try {
+    const tenant = req.tenant;
+
+    if (!tenant.googleDrive.enabled || !tenant.googleDrive.refreshToken) {
+      return res.status(400).json({ error: 'Google Drive not connected' });
+    }
+
+    // Initialize Drive service
+    const driveService = new GoogleDriveService();
+    await driveService.initialize({
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      redirect_uri: process.env.GOOGLE_REDIRECT_URI || `${req.protocol}://${req.get('host')}/api/google-drive/callback`,
+      refresh_token: tenant.googleDrive.refreshToken
+    });
+
+    // Get all photos for this tenant
+    const photos = await Photo.find({ tenantId: tenant._id });
+    const guestPhotos = await GuestPhoto.find({ tenantId: tenant._id, approved: true });
+
+    const allPhotos = [
+      ...photos.map(p => ({ path: p.url, name: path.basename(p.url) })),
+      ...guestPhotos.map(p => ({ path: p.url, name: path.basename(p.url) }))
+    ];
+
+    // Upload to Drive
+    const folderName = tenant.googleDrive.folderName || `${tenant.coupleNames || tenant.slug} - Wedding Photos`;
+    const results = await driveService.uploadMultipleFiles(allPhotos, folderName);
+
+    // Update last backup date
+    await Tenant.findByIdAndUpdate(tenant._id, {
+      'googleDrive.lastBackupDate': new Date(),
+      'googleDrive.folderName': folderName
+    });
+
+    const successCount = results.filter(r => r.success).length;
+    const failCount = results.filter(r => !r.success).length;
+
+    res.json({
+      message: `Yedekleme tamamlandı: ${successCount} başarılı, ${failCount} hata`,
+      results
+    });
+  } catch (error) {
+    console.error('Google Drive backup error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get Google Drive status
+app.get('/api/google-drive/status', requireTenant, (req, res) => {
+  const { googleDrive } = req.tenant;
+  res.json({
+    enabled: googleDrive.enabled || false,
+    lastBackup: googleDrive.lastBackupDate,
+    folderName: googleDrive.folderName,
+    autoBackup: googleDrive.autoBackup || false
+  });
+});
+
+// Disconnect Google Drive
+app.post('/api/google-drive/disconnect', requireTenant, async (req, res) => {
+  try {
+    await Tenant.findByIdAndUpdate(req.tenant._id, {
+      'googleDrive.enabled': false,
+      'googleDrive.refreshToken': null
+    });
+    res.json({ message: 'Google Drive bağlantısı kesildi' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

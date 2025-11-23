@@ -58,6 +58,15 @@ const tenantSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
   language: { type: String, default: 'tr' },
 
+  // Google Drive Integration
+  googleDrive: {
+    enabled: { type: Boolean, default: false },
+    refreshToken: String,
+    folderName: String,
+    lastBackupDate: Date,
+    autoBackup: { type: Boolean, default: false }
+  },
+
   // Timestamps
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }

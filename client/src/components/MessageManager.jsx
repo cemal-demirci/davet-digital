@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { MessageSquare, CheckCircle, XCircle, Trash2 } from 'lucide-react'
 import axios from 'axios'
 import { API_URL } from '../config'
+import { formatDateTime } from '../utils/dateFormatter'
 
 
 const MessageManager = () => {
@@ -133,7 +134,7 @@ const MessageManager = () => {
                     </div>
                     <p className="text-gray-700 mb-2">{message.message}</p>
                     <div className="text-xs text-gray-500">
-                      {new Date(message.createdAt).toLocaleString('tr-TR')}
+                      {formatDateTime(message.createdAt)}
                     </div>
                   </div>
                   <div className="flex space-x-2 ml-4">

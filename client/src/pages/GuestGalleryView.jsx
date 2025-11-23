@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Lock, X, ChevronLeft, ChevronRight, User, Calendar, CheckCircle, XCircle } from 'lucide-react'
 import axios from 'axios'
 import { API_URL } from '../config'
+import { formatDate, formatDateTime } from '../utils/dateFormatter'
 
 
 const GuestGalleryView = () => {
@@ -185,7 +186,7 @@ const GuestGalleryView = () => {
                   </p>
                   <p className="text-xs text-gray-300 flex items-center mt-1">
                     <Calendar className="w-3 h-3 mr-1" />
-                    {new Date(photo.uploadDate).toLocaleDateString('tr-TR')}
+                    {formatDate(photo.uploadDate)}
                   </p>
                 </div>
               </div>
@@ -251,7 +252,7 @@ const GuestGalleryView = () => {
                   )}
                 </div>
                 <p className="text-sm text-gray-400">
-                  {new Date(photos[currentIndex]?.uploadDate).toLocaleString('tr-TR')}
+                  {formatDateTime(photos[currentIndex]?.uploadDate)}
                 </p>
                 <p className="text-sm text-gray-500 mt-4">
                   {currentIndex + 1} / {photos.length}

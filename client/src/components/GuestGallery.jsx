@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Check, X, Trash2, User, Calendar } from 'lucide-react'
 import axios from 'axios'
 import { API_URL } from '../config'
+import { formatDateTime } from '../utils/dateFormatter'
 
 
 const GuestGallery = () => {
@@ -147,7 +148,7 @@ const GuestGallery = () => {
                   </div>
                   <div className="flex items-center space-x-2 text-xs text-gray-500 mb-3">
                     <Calendar className="w-3 h-3" />
-                    <span>{new Date(photo.uploadDate).toLocaleString('tr-TR')}</span>
+                    <span>{formatDateTime(photo.uploadDate)}</span>
                   </div>
 
                   <div className="flex space-x-2">

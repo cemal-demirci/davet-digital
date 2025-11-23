@@ -4,6 +4,7 @@ import axios from 'axios'
 import { getThemeClasses, getGradientClass, getHeroGradient, themeColorMap } from '../utils/themeHelper'
 import SEO from '../components/SEO'
 import { API_URL } from '../config'
+import { formatLongDate, formatTime } from '../utils/dateFormatter'
 
 const Home = () => {
   const [settings, setSettings] = useState(null)
@@ -428,19 +429,11 @@ const Home = () => {
                   <div className="space-y-3 text-gray-700">
                     <div className="flex items-center">
                       <Calendar className={`w-5 h-5 mr-2 ${theme.textPrimary500}`} />
-                      <span>{new Date(event.date).toLocaleDateString('tr-TR', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}</span>
+                      <span>{formatLongDate(event.date)}</span>
                     </div>
                     <div className="flex items-center">
                       <Clock className={`w-5 h-5 mr-2 ${theme.textPrimary500}`} />
-                      <span>{new Date(event.date).toLocaleTimeString('tr-TR', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}</span>
+                      <span>{formatTime(event.date)}</span>
                     </div>
                     {event.location && (
                       <div className="flex items-center">

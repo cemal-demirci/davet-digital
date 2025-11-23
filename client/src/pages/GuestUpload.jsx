@@ -304,7 +304,7 @@ const GuestUpload = () => {
                       </div>
                       <input
                         type="file"
-                        accept="image/*,video/*"
+                        accept="image/*,video/*,audio/*,.mp3,.wav,.m4a"
                         multiple
                         onChange={handleFileSelect}
                         className="hidden"
@@ -316,14 +316,14 @@ const GuestUpload = () => {
                     <label className="block">
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-pink-500 transition-colors cursor-pointer">
                         <Upload className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-                        <p className="text-gray-600 mb-2">Fotoğraf/Video yüklemek için tıklayın</p>
+                        <p className="text-gray-600 mb-2">Fotoğraf/Video/Müzik yüklemek için tıklayın</p>
                         <p className="text-sm text-gray-400">veya sürükleyip bırakın</p>
                         <p className="text-xs text-gray-400 mt-2">Birden fazla seçebilirsiniz</p>
-                        <p className="text-xs text-gray-400">Max 10MB - JPG, PNG, MP4</p>
+                        <p className="text-xs text-gray-400">Max 10MB - JPG, PNG, MP4, MP3</p>
                       </div>
                       <input
                         type="file"
-                        accept="image/*,video/*"
+                        accept="image/*,video/*,audio/*,.mp3,.wav,.m4a"
                         multiple
                         onChange={handleFileSelect}
                         className="hidden"

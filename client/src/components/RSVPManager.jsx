@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Check, X, Trash2, Users, Mail, Phone, MessageSquare } from 'lucide-react'
 import axios from 'axios'
 import { API_URL } from '../config'
+import { formatDateTime } from '../utils/dateFormatter'
 
 
 const RSVPManager = () => {
@@ -172,7 +173,7 @@ const RSVPManager = () => {
                       </div>
                     )}
                     <div className="text-xs text-gray-500 mt-2">
-                      {new Date(rsvp.createdAt).toLocaleString('tr-TR')}
+                      {formatDateTime(rsvp.createdAt)}
                     </div>
                   </div>
                   <button
