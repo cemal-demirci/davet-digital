@@ -1,11 +1,107 @@
 import { useState } from 'react'
-import { Users, DollarSign, Calendar, TrendingUp, Package, AlertCircle, CheckCircle, Clock, Search, Filter, Download, Eye, Edit2, Trash2 } from 'lucide-react'
+import { Users, DollarSign, Calendar, TrendingUp, Package, AlertCircle, CheckCircle, Clock, Search, Filter, Download, Eye, Edit2, Trash2, Lock, LogOut, Settings } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { formatDate, formatCurrency } from '../utils/dateFormatter'
 
 const SuperAdmin = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [loginError, setLoginError] = useState('')
   const [activeTab, setActiveTab] = useState('overview')
   const [searchTerm, setSearchTerm] = useState('')
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    if (username === 'root' && password === 'root23') {
+      setIsAuthenticated(true)
+      setLoginError('')
+      localStorage.setItem('superAdminAuth', 'true')
+    } else {
+      setLoginError('Kullanıcı adı veya şifre hatalı!')
+    }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+    setUsername('')
+    setPassword('')
+    localStorage.removeItem('superAdminAuth')
+  }
+
+  // Check if already authenticated on component mount
+  useState(() => {
+    if (localStorage.getItem('superAdminAuth') === 'true') {
+      setIsAuthenticated(true)
+    }
+  })
+
+  // Login Screen
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-md w-full">
+          <div className="text-center mb-8">
+            <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Super Admin</h1>
+            <p className="text-gray-600">Davet Digital Yönetim Paneli</p>
+          </div>
+
+          {loginError && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3">
+              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+              <p className="text-red-700 text-sm">{loginError}</p>
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Kullanıcı Adı
+              </label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="root"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Şifre
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="••••••"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
+            >
+              Giriş Yap
+            </button>
+          </form>
+
+          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+            <Link to="/" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+              ← Ana Sayfaya Dön
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   // Mock data - gerçekte backend'den gelecek
   const stats = {
@@ -119,8 +215,12 @@ const SuperAdmin = () => {
               >
                 Ana Sayfa
               </Link>
-              <button className="px-3 md:px-4 py-2 text-sm md:text-base bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all">
-                Çıkış Yap
+              <button
+                onClick={handleLogout}
+                className="px-3 md:px-4 py-2 text-sm md:text-base bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center space-x-2"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Çıkış Yap</span>
               </button>
             </div>
           </div>
@@ -212,6 +312,17 @@ const SuperAdmin = () => {
               >
                 <DollarSign className="w-5 h-5 inline mr-2" />
                 Ödemeler
+              </button>
+              <button
+                onClick={() => setActiveTab('pages')}
+                className={`flex-1 py-4 px-6 text-center font-semibold transition-colors ${
+                  activeTab === 'pages'
+                    ? 'border-b-2 border-purple-600 text-purple-600'
+                    : 'text-gray-600 hover:text-purple-600'
+                }`}
+              >
+                <Settings className="w-5 h-5 inline mr-2" />
+                Sayfalar
               </button>
             </nav>
           </div>
@@ -397,6 +508,156 @@ const SuperAdmin = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            )}
+
+            {/* Pages Management Tab */}
+            {activeTab === 'pages' && (
+              <div className="space-y-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">Sayfa Yönetimi</h2>
+                  <p className="text-gray-600">Ana sayfa, demo, fiyatlandırma ve diğer sayfaları buradan yönetin</p>
+                </div>
+
+                {/* Page Cards */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Landing Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Ana Sayfa</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Landing page, hero section, features, testimonials</p>
+                    <div className="flex space-x-2">
+                      <Link to="/" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Demo Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Demo Sayfası</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Canlı demo, örnek düğün sitesi</p>
+                    <div className="flex space-x-2">
+                      <Link to="/demo" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/demo" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Pricing Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Fiyatlandırma</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Paket fiyatları, özellik karşılaştırmaları</p>
+                    <div className="flex space-x-2">
+                      <Link to="/pricing" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/pricing" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Signup Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-pink-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Kayıt Sayfası</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Üye kayıt formu, paket seçimi</p>
+                    <div className="flex space-x-2">
+                      <Link to="/signup" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/signup" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Login Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-indigo-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Giriş Sayfası</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Müşteri giriş formu</p>
+                    <div className="flex space-x-2">
+                      <Link to="/login" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/login" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* EULA Page */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-amber-500 hover:shadow-xl transition-shadow">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">Kullanıcı Sözleşmesi</h3>
+                      <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Aktif</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">EULA, şartlar ve koşullar</p>
+                    <div className="flex space-x-2">
+                      <Link to="/eula" className="flex-1 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg text-center hover:bg-purple-200 transition-colors flex items-center justify-center space-x-2">
+                        <Eye className="w-4 h-4" />
+                        <span>Görüntüle</span>
+                      </Link>
+                      <Link to="/eula" className="flex-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg text-center hover:bg-blue-200 transition-colors flex items-center justify-center space-x-2">
+                        <Edit2 className="w-4 h-4" />
+                        <span>Düzenle</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Stats */}
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl p-6 mt-8">
+                  <h3 className="text-xl font-bold mb-4">Hızlı İstatistikler</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                      <p className="text-purple-100 text-sm">Toplam Sayfa</p>
+                      <p className="text-3xl font-bold">6</p>
+                    </div>
+                    <div>
+                      <p className="text-purple-100 text-sm">Aktif Sayfa</p>
+                      <p className="text-3xl font-bold">6</p>
+                    </div>
+                    <div>
+                      <p className="text-purple-100 text-sm">Son Güncelleme</p>
+                      <p className="text-lg font-semibold">Bugün</p>
+                    </div>
+                    <div>
+                      <p className="text-purple-100 text-sm">Durum</p>
+                      <p className="text-lg font-semibold">✓ Tümü Çalışıyor</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
