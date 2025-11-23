@@ -14,6 +14,7 @@ import GuestGalleryView from './pages/GuestGalleryView'
 import LandingPage from './pages/LandingPage'
 import Pricing from './pages/Pricing'
 import Signup from './pages/Signup'
+import Demo from './pages/Demo'
 import { API_URL } from './config'
 import './App.css'
 
@@ -40,7 +41,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/demo" element={<Home />} />
+        <Route path="/demo" element={<Demo />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/upload/:qrCode" element={<GuestUpload />} />
         <Route path="/gallery" element={<Gallery />} />

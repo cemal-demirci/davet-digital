@@ -22,10 +22,10 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Bu site adresi zaten kullanılıyor. Lütfen başka bir adres seçin.' });
     }
 
-    // Easter egg: Block "pervin" and anything starting with "pervin-"
-    if (slug === RESERVED_EASTER_EGG_NAME || slug.startsWith(RESERVED_EASTER_EGG_NAME + '-')) {
+    // Easter egg: Block anything containing "pervin"
+    if (slug.includes(RESERVED_EASTER_EGG_NAME)) {
       return res.status(400).json({
-        error: 'Bu isim özel bir kişi için rezerve edilmiştir. 💕'
+        error: 'Bu alan sonsuza kadar rezerve edilmiştir. 💕'
       });
     }
 
@@ -139,11 +139,11 @@ router.get('/check-slug/:slug', async (req, res) => {
       return res.json({ available: false, reason: 'Bu site adresi zaten kullanılıyor.' });
     }
 
-    // Easter egg: Block "pervin" and anything starting with "pervin-"
-    if (slug === RESERVED_EASTER_EGG_NAME || slug.startsWith(RESERVED_EASTER_EGG_NAME + '-')) {
+    // Easter egg: Block anything containing "pervin"
+    if (slug.includes(RESERVED_EASTER_EGG_NAME)) {
       return res.json({
         available: false,
-        reason: 'Bu isim özel bir kişi için rezerve edilmiştir. 💕'
+        reason: 'Bu alan sonsuza kadar rezerve edilmiştir. 💕'
       });
     }
 
