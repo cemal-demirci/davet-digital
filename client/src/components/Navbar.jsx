@@ -9,15 +9,20 @@ const Navbar = ({ coupleNames }) => {
   const isActive = (path) => location.pathname === path
 
   const navItems = [
-    { path: '/', label: 'Ana Sayfa', icon: Home },
+    { path: '/wedding', label: 'Ana Sayfa', icon: Home },
     { path: '/timeline', label: 'Program', icon: Calendar },
     { path: '/gallery', label: 'Galeri', icon: Image },
     { path: '/rsvp', label: 'Katılım', icon: Users },
     { path: '/live-wall', label: 'Canlı Duvar', icon: Tv }
   ]
 
-  // Admin ve upload sayfalarında navbar gösterme
-  if (location.pathname.startsWith('/admin') || location.pathname.startsWith('/upload')) {
+  // Marketing ve admin sayfalarında navbar gösterme
+  const marketingPaths = ['/', '/pricing', '/signup', '/demo', '/login']
+  if (
+    marketingPaths.includes(location.pathname) ||
+    location.pathname.startsWith('/admin') ||
+    location.pathname.startsWith('/upload')
+  ) {
     return null
   }
 
@@ -28,7 +33,7 @@ const Navbar = ({ coupleNames }) => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo / Couple Names */}
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/wedding" className="flex items-center space-x-2">
               <Heart className="w-6 h-6 text-romantic-500" />
               <span className="text-xl font-script text-romantic-600 hidden md:block">
                 {coupleNames || 'Düğünümüz'}

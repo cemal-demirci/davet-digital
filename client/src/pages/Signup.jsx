@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Heart, Sparkles, Check, AlertCircle, Loader } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
+import MarketingFooter from '../components/MarketingFooter'
 import { API_URL } from '../config'
 
 
@@ -379,6 +380,8 @@ const Signup = () => {
         </div>
       </div>
       </div>
+
+      <MarketingFooter />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
+import MarketingFooter from '../components/MarketingFooter'
 
 const LandingPage = () => {
   const features = [
@@ -375,14 +376,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Heart className="w-12 h-12 mx-auto mb-4 text-pink-500" />
-          <p className="text-xl font-script mb-2">Davet Digital</p>
-          <p className="text-gray-400">2024'ten beri unutulmaz düğün anıları yaratıyoruz</p>
-        </div>
-      </div>
+      <MarketingFooter />
     </div>
   )
 }

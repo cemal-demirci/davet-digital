@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Check, Heart, Crown, Sparkles, Zap } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
+import MarketingFooter from '../components/MarketingFooter'
 
 const Pricing = () => {
   const plans = [
@@ -273,6 +274,8 @@ const Pricing = () => {
         </div>
       </div>
       </div>
+
+      <MarketingFooter />
     </div>
   )
 }

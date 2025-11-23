@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Heart, Calendar, Users, Camera, QrCode, Eye, ArrowRight, CheckCircle, Star } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
+import MarketingFooter from '../components/MarketingFooter'
 
 const Demo = () => {
   const [activeTab, setActiveTab] = useState('home')
@@ -304,6 +305,8 @@ const Demo = () => {
           </p>
         </div>
       </div>
+
+      <MarketingFooter />
     </div>
   )
 }

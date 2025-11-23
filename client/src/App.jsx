@@ -38,17 +38,23 @@ function App() {
     <Router>
       <Navbar coupleNames={coupleNames} />
       <Routes>
+        {/* Marketing Pages */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/demo" element={<Demo />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/upload/:qrCode" element={<GuestUpload />} />
-        <Route path="/gallery" element={<Gallery />} />
+
+        {/* Wedding Site Pages */}
+        <Route path="/wedding" element={<Home />} />
         <Route path="/timeline" element={<Timeline />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/live-wall" element={<LiveWall />} />
         <Route path="/rsvp" element={<RSVP />} />
         <Route path="/guest-gallery/:code?" element={<GuestGalleryView />} />
+
+        {/* Admin & Upload */}
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/upload/:qrCode" element={<GuestUpload />} />
       </Routes>
     </Router>
   )
