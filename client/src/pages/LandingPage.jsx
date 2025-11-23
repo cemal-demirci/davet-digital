@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield, ClipboardList, LogIn } from 'lucide-react'
+import { Heart, Calendar, Users, Camera, QrCode, Palette, Globe, Sparkles, Check, ArrowRight, Star, Zap, Shield, ClipboardList, LogIn, DollarSign } from 'lucide-react'
 import SEO from '../components/SEO'
 import MarketingNavbar from '../components/MarketingNavbar'
 import MarketingFooter from '../components/MarketingFooter'
@@ -166,6 +166,121 @@ const LandingPage = () => {
               <LogIn className="w-5 h-5" />
               <span>Giriş Yap</span>
             </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* NEW: Advanced Wedding Planner Section */}
+      <div className="py-24 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwZDlhODgiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItMnptMCAwdi0yIDJ6bS0yIDB2LTIgMnptLTIgMGgtMiAyem0wIDBoMi0yem0wLTJoLTIgMnptMiAwaDItMnptMC0yaDItMnptMCAyaC0yIDJ6bTAgMGgyLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* NEW Badge */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full shadow-lg animate-pulse">
+              <Sparkles className="w-5 h-5" />
+              <span className="font-bold text-lg">YENİ ÖZELLIK!</span>
+              <Sparkles className="w-5 h-5" />
+            </div>
+          </div>
+
+          <div className="text-center mb-12">
+            <h2 className="text-5xl md:text-6xl font-script text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600 mb-4">
+              Gelişmiş Düğün Planlayıcı
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Profesyonel bir organizatör gibi düğününüzü planlayın ve takip edin. Bütçe yönetimi, görev listesi, misafir takibi ve daha fazlası!
+            </p>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
+                <DollarSign className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Akıllı Bütçe Takibi</h3>
+              <p className="text-gray-600 mb-4">
+                Tüm masraflarınızı kategorilere ayırın, gerçek harcamalarınızı takip edin ve bütçenizi aşmayın.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  Kategori bazlı bütçeleme
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  Gerçek zamanlı harcama takibi
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-green-500 mr-2" />
+                  Kalan bütçe uyarıları
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mb-6">
+                <ClipboardList className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Görev Yönetimi</h3>
+              <p className="text-gray-600 mb-4">
+                Düğün hazırlıklarını adım adım takip edin. Hiçbir detayı atlamayın, her şey zamanında tamamlansın.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-blue-500 mr-2" />
+                  Öncelik bazlı görevler
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-blue-500 mr-2" />
+                  Son tarih takibi
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-blue-500 mr-2" />
+                  İlerleme göstergeleri
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Misafir Organizasyonu</h3>
+              <p className="text-gray-600 mb-4">
+                Tüm misafirlerinizi yönetin, masa düzenlerini oluşturun ve RSVP durumlarını takip edin.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-pink-500 mr-2" />
+                  Detaylı misafir listesi
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-pink-500 mr-2" />
+                  Masa ve grup düzenlemeleri
+                </li>
+                <li className="flex items-center">
+                  <Check className="w-4 h-4 text-pink-500 mr-2" />
+                  RSVP takip sistemi
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <Link
+              to="/signup"
+              className="inline-flex items-center space-x-3 px-10 py-5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full text-xl font-bold hover:shadow-2xl transform hover:scale-105 transition-all"
+            >
+              <ClipboardList className="w-6 h-6" />
+              <span>Hemen Başlayın</span>
+              <ArrowRight className="w-6 h-6" />
+            </Link>
+            <p className="mt-4 text-gray-600">
+              14 günlük ücretsiz deneme • Kredi kartı gerektirmez
+            </p>
           </div>
         </div>
       </div>
