@@ -12,6 +12,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [slugAvailable, setSlugAvailable] = useState(null)
+  const [slugMessage, setSlugMessage] = useState('') // For easter egg or unavailable reason
   const [checkingSlug, setCheckingSlug] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -53,6 +54,7 @@ const Signup = () => {
   const checkSlugAvailability = async (slug) => {
     if (!slug || slug.length < 3) {
       setSlugAvailable(null)
+      setSlugMessage('')
       return
     }
 
@@ -60,6 +62,7 @@ const Signup = () => {
     try {
       const response = await axios.get(`${API_URL}/api/tenants/check-slug/${slug}`)
       setSlugAvailable(response.data.available)
+      setSlugMessage(response.data.reason || '') // Store the reason (easter egg message)
     } catch (error) {
       console.error('Error checking slug:', error)
     } finally {
@@ -269,10 +272,12 @@ const Signup = () => {
                     )}
                   </div>
                   {slugAvailable === false && (
-                    <p className="mt-2 text-sm text-red-600">❌ Bu alt alan adı zaten kullanılıyor. Başka bir isim deneyin.</p>
+                    <p className="mt-2 text-sm text-red-600">
+                      ❌ {slugMessage || 'Bu alt alan adı zaten kullanılıyor. Başka bir isim deneyin.'}
+                    </p>
                   )}
                   {slugAvailable === true && (
-                    <p className="mt-2 text-sm text-green-600">✅ Harika! <span className="font-mono font-bold">{formData.slug}.davetdigital.com</span> sizin olacak!</p>
+                    <p className="mt-2 text-sm text-green-600">✅ Harika! <span className="font-mono font-bold">{formData.slug}.davet.digital</span> sizin olacak!</p>
                   )}
                 </div>
               </div>
