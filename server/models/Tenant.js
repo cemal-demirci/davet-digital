@@ -64,7 +64,7 @@ const tenantSchema = new mongoose.Schema({
 });
 
 // Middleware to update plan limits when plan changes
-tenantSchema.pre('save', function(next) {
+tenantSchema.pre('save', async function() {
   if (this.isModified('plan')) {
     switch(this.plan) {
       case 'temel':
@@ -121,7 +121,6 @@ tenantSchema.pre('save', function(next) {
     }
   }
   this.updatedAt = Date.now();
-  next();
 });
 
 // Index for faster lookups
