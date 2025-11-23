@@ -46,18 +46,18 @@ const WeddingPlanner = () => {
   const attendingGuests = guests.filter(g => g.rsvp === 'attending').reduce((sum, g) => sum + g.guests, 0)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white py-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white py-4 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-2">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-2">
             Düğün Planlayıcı
           </h1>
-          <p className="text-gray-600">Düğün hazırlıklarınızı organize edin ve takip edin</p>
+          <p className="text-sm md:text-base text-gray-600">Düğün hazırlıklarınızı organize edin ve takip edin</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           <div className="bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
             <div className="flex items-center justify-between mb-4">
               <DollarSign className="w-10 h-10 text-green-500" />
@@ -98,39 +98,42 @@ const WeddingPlanner = () => {
         {/* Tabs */}
         <div className="bg-white rounded-2xl shadow-lg">
           <div className="border-b border-gray-200">
-            <nav className="flex">
+            <nav className="flex overflow-x-auto">
               <button
                 onClick={() => setActiveTab('budget')}
-                className={`flex-1 py-4 px-6 text-center font-semibold transition-colors ${
+                className={`flex-1 min-w-[120px] py-3 md:py-4 px-3 md:px-6 text-center text-sm md:text-base font-semibold transition-colors ${
                   activeTab === 'budget'
                     ? 'border-b-2 border-purple-600 text-purple-600'
                     : 'text-gray-600 hover:text-purple-600'
                 }`}
               >
-                <DollarSign className="w-5 h-5 inline mr-2" />
-                Bütçe Takibi
+                <DollarSign className="w-4 h-4 md:w-5 md:h-5 inline mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Bütçe Takibi</span>
+                <span className="sm:hidden">Bütçe</span>
               </button>
               <button
                 onClick={() => setActiveTab('tasks')}
-                className={`flex-1 py-4 px-6 text-center font-semibold transition-colors ${
+                className={`flex-1 min-w-[120px] py-3 md:py-4 px-3 md:px-6 text-center text-sm md:text-base font-semibold transition-colors ${
                   activeTab === 'tasks'
                     ? 'border-b-2 border-purple-600 text-purple-600'
                     : 'text-gray-600 hover:text-purple-600'
                 }`}
               >
-                <CheckSquare className="w-5 h-5 inline mr-2" />
-                Görev Listesi
+                <CheckSquare className="w-4 h-4 md:w-5 md:h-5 inline mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Görev Listesi</span>
+                <span className="sm:hidden">Görevler</span>
               </button>
               <button
                 onClick={() => setActiveTab('guests')}
-                className={`flex-1 py-4 px-6 text-center font-semibold transition-colors ${
+                className={`flex-1 min-w-[120px] py-3 md:py-4 px-3 md:px-6 text-center text-sm md:text-base font-semibold transition-colors ${
                   activeTab === 'guests'
                     ? 'border-b-2 border-purple-600 text-purple-600'
                     : 'text-gray-600 hover:text-purple-600'
                 }`}
               >
-                <Users className="w-5 h-5 inline mr-2" />
-                Misafir Yönetimi
+                <Users className="w-4 h-4 md:w-5 md:h-5 inline mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Misafir Yönetimi</span>
+                <span className="sm:hidden">Misafirler</span>
               </button>
             </nav>
           </div>

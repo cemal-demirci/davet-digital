@@ -105,21 +105,21 @@ const SuperAdmin = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white py-6 shadow-xl">
+      <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white py-4 md:py-6 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold">Super Admin Dashboard</h1>
-              <p className="text-purple-100 mt-1">Davet Digital Yönetim Paneli</p>
+              <h1 className="text-2xl md:text-3xl font-bold">Super Admin Dashboard</h1>
+              <p className="text-purple-100 mt-1 text-sm md:text-base">Davet Digital Yönetim Paneli</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
               <Link
                 to="/"
-                className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
+                className="px-3 md:px-4 py-2 text-sm md:text-base bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
               >
                 Ana Sayfa
               </Link>
-              <button className="px-4 py-2 bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all">
+              <button className="px-3 md:px-4 py-2 text-sm md:text-base bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all">
                 Çıkış Yap
               </button>
             </div>
@@ -127,9 +127,9 @@ const SuperAdmin = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
         {/* Stats Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
           <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500">
             <div className="flex items-center justify-between">
               <div>

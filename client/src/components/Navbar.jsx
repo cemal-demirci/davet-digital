@@ -17,11 +17,11 @@ const Navbar = ({ coupleNames }) => {
     { path: '/live-wall', label: 'Canlı Duvar', icon: Tv }
   ]
 
-  // Marketing ve admin sayfalarında navbar gösterme
+  // Marketing, client admin ve upload sayfalarında navbar gösterme
   const marketingPaths = ['/', '/pricing', '/signup', '/demo', '/login', '/eula']
   if (
     marketingPaths.includes(location.pathname) ||
-    location.pathname.startsWith('/admin') ||
+    location.pathname === '/admin' ||
     location.pathname.startsWith('/upload')
   ) {
     return null
